@@ -1,0 +1,48 @@
+<!-- css for NoteApp\/Component -->
+
+<!-- css for left-top.php -->
+
+.non-class {}
+
+.ncl-tab-links:hover {
+    color: darkblue;
+    text-decoration: underline;
+    background: lightgray;
+}
+
+.ncl-tab-links {
+    border: none;
+    background-color: inherit;
+}
+
+#ncl-lang-tab {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
+<!-- end for left-top.php -->
+
+<!-- css for right-top-unsigned.php -->
+
+.non-class {}
+
+.ncr-unsigned-tab {
+    border: none;
+    background-color: inherit;
+}
+
+.ncr-unsigned-tab:hover {
+    color: darkblue;
+    text-decoration: underline;
+    background: lightgray;
+}
+
+#ncr-unsigned-tabs {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+<!-- end for right-top-unsigned.php -->
