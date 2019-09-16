@@ -4,24 +4,13 @@ create database if not exists noteapp character set utf8 collate utf8_general_ci
 use noteapp;
 -- end -----------------------------------------------------------------------------------------------------------------
 
--- tables about users --------------------------------------------------------------------------------------------------
-create table if not exists users (
-    id int not null auto_increment,
-    username varchar(200) not null,
-    password varchar(200) not null,
-    primary key (id)
-);
--- end -----------------------------------------------------------------------------------------------------------------
-
 -- the main tables -----------------------------------------------------------------------------------------------------
 create table if not exists articles (
     id int not null auto_increment,
     title varchar(100) not null,
     class enum('note', 'record', 'entry', 'analysis') not null,
-    author int not null default 1,
     primary key (id)
 );
-alter table articles add constraint articles_key1 unique (title, class, author);
 
 create table if not exists tags (
     id int not null,
@@ -97,6 +86,13 @@ create table if not exists entries (
 );
 alter table entries add constraint entries_key1 foreign key (id) references articles(id);
 alter table entries add constraint entries_key2 unique (introduction);
+
+create table if not exists alias (
+    entry_id int not null,
+    alias varchar(200)
+);
+alter table alias add constraint alias_key1 foreign key (entry_id) references entries(entry_id);
+alter table alias add constraint alias_key2 unique (entry_id, alias);
 
 create table if not exists entry_sections (
     entry_id int not null,

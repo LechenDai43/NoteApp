@@ -21,7 +21,7 @@ classes:
     </head>
     <body>
         <?php include_once 'component/left-top.php'; ?>
-        <?php include_once 'component/right-top-unsigned.php'; ?>
+        <?php include_once 'component/right-top.php'; ?>
         <main id="index-main">
             <h1 id="main-logo">Note App</h1>
             <div id="out-form">
