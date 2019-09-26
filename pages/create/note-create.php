@@ -1,6 +1,8 @@
 <!-- List of elements
 IDs:
     note-create-main               a main that contains all component to create a new note
+    note-cue-add                   a button to add new item into the cue list
+    note-comment-add               a button to add new comment
 Classes:
     create-main                    mains that contains all component to create a new article
     title-field                    editable divs for filling in the title
@@ -16,6 +18,12 @@ Classes:
     note-comment                   divs contains all component for comment **the so-called comment is others' notes
     note-comment-content           editable divs contains comment content
     add-button                     buttons to add a specific editable component
+    submit                         buttons to submit the new article
+Functions:
+     addSpecialElement(int)        add a special component to the note content according to the int parameter
+     addNoteCue()                  add a new item into the note cues
+     addNoteComment()              add a new comment into the note comments
+     createNote()                  process the submission of a new note, check the validation and send content to php
 -->
 <html>
     <head>
@@ -35,14 +43,14 @@ Classes:
                     </td>
                     <td>
                         <div class="note-tool-bar">
-                            <div class="tool">列表</div>
-                            <div class="tool">表格</div>
-                            <div class="tool">矩阵</div>
-                            <div class="tool">流程图</div>
-                            <div class="tool">树状图</div>
-                            <div class="tool">环状图</div>
-                            <div class="tool">金字塔</div>
-                            <div class="tool">文氏图</div>
+                            <div class="tool" onclick="addSpecialElement(0)">列表</div>
+                            <div class="tool" onclick="addSpecialElement(1)">表格</div>
+                            <div class="tool" onclick="addSpecialElement(2)">矩阵</div>
+                            <div class="tool" onclick="addSpecialElement(3)">流程图</div>
+                            <div class="tool" onclick="addSpecialElement(4)">树状图</div>
+                            <div class="tool" onclick="addSpecialElement(5)">环状图</div>
+                            <div class="tool" onclick="addSpecialElement(6)">金字塔</div>
+                            <div class="tool" onclick="addSpecialElement(7)">文氏图</div>
                         </div>
                     </td>
                 </tr>
@@ -52,7 +60,7 @@ Classes:
                             <p class="cue-content" contenteditable="true">
                                 &#8226
                             </p>
-                            <button class="add-button">添加 Add</button>
+                            <button class="add-button" id="note-cue-add" onclick="addNoteCue()">添加 Add</button>
                         </div>
                     </td>
                     <td>
@@ -75,8 +83,10 @@ Classes:
                 <div class="note-comment-content" contenteditable="true">
                     请在此添加新的评论 Comment Here
                 </div>
-                <button class="add-button">添加 Add</button>
+                <button class="add-button" id="note-comment-add" onclick="addNoteComment()">添加 Add</button>
             </div>
+            <button class="submit" onclick="createNote()">提交 Submit</button>
         </main>
+        <script src="../../javascript/note-create-js.js"></script>
     </body
 </html>

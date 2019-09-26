@@ -4,10 +4,14 @@
 
 .non-class {}
 
-#note-edit-main {
+.create-main {
     margin-top: 6%;
     padding-right: 10%;
     padding-left: 10%;
+}
+
+.tool {
+
 }
 
 <!-- end for elements in common -->
@@ -28,3 +32,13 @@
     display: flex;
 }
 <!-- end for note-create.php -->
+
+<!-- css for entry-create.php -->
+
+.non-class {}
+
+.entry-tool-bar {
+    align-items: center;
+    display: flex;
+}
+<!-- end for entry-create.php -->
