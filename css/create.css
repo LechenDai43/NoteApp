@@ -1,0 +1,30 @@
+<!-- css for NoteApp\/create -->
+
+<!-- css for elements in common -->
+
+.non-class {}
+
+#note-edit-main {
+    margin-top: 6%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+<!-- end for elements in common -->
+
+<!-- css for common-create.php -->
+
+.non-class {}
+
+
+<!-- end for common-create.php -->
+
+<!-- css for note-create.php -->
+
+.non-class {}
+
+.note-tool-bar {
+    align-items: center;
+    display: flex;
+}
+<!-- end for note-create.php -->

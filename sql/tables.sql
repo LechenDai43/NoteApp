@@ -115,23 +115,3 @@ create table if not exists entry_relatives (
 alter table entry_relatives add constraint entry_relatives_key1 foreign key (entry_id) references entries(entry_id);
 alter table entry_relatives add constraint entry_relatives_key2 foreign key (relative_id) references entries(entry_id);
 -- end -----------------------------------------------------------------------------------------------------------------
-
--- tables about analysis -----------------------------------------------------------------------------------------------
-create table if not exists analysises (
-    analysis_id int not null auto_increment,
-    id int not null,
-    sample varchar(100) not null,
-    primary key (analysis_id)
-);
-alter table analysises add constraint analysises_key1 foreign key (id) references articles(id);
-alter table analysises add constraint analysises_key2 unique (sample);
-
-create table if not exists analysis_views (
-    analysis_id int not null,
-    ana_view varchar(100) not null,
-    reflection varchar(100) not null
-);
-alter table analysis_views add constraint analysis_views_key1 foreign key (analysis_id) references analysises(analysis_id);
-alter table analysis_views add constraint analysis_views_key2 unique (ana_view);
-alter table analysis_views add constraint analysis_views_key3 unique (reflection);
--- end -----------------------------------------------------------------------------------------------------------------
