@@ -44,6 +44,43 @@ function addSpecialElement(key) {
     parent.append(newContent);
 }
 
+function addMatrix() {
+    
+}
+
+function addList() {
+    var list = document.createElement("ul");
+    list.classList.add("note-list");
+
+    var li = document.createElement("li");
+    li.classList.add("note-list-item");
+    li.setAttribute("contenteditable", "true");
+    li.innerHTML = "内容 Content";
+
+    list.append(li);
+
+    var btn = document.createElement("button");
+    btn.classList.add("add-button");
+    btn.classList.add("list-item-add");
+    btn.onclick = function() {addListItem(event)};
+    btn.innerHTML = "+";
+    list.append(btn);
+
+    var parent = document.getElementsByClassName("note-container")[0];
+    parent.append(list);
+}
+
+function addListItem(event) {
+    var list = event.target.parentElement;
+    var youngBro = event.target;
+    var li = document.createElement("li");
+    li.classList.add("note-list-item");
+    li.setAttribute("contenteditable", "true");
+    li.innerHTML = "内容 Content";
+
+    list.insertBefore(li, youngBro);
+}
+
 function addTable() {
     var table = document.createElement("table");
     table.classList.add("note-table");
