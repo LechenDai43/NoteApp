@@ -44,6 +44,93 @@ function addSpecialElement(key) {
     parent.append(newContent);
 }
 
+function addProcess() {
+    var process = document.createElement("div");
+    process.classList.add("note-process");
+
+    var input = document.createElement("div");
+    input.classList.add("note-process-input-number");
+    var label = document.createElement("p");
+    label.classList.add("note-process-input-label");
+    label.innerHTML = "流程数量-Number of Process";
+    input.append(label);
+    var field = document.createElement("p");
+    field.classList.add("note-process-input-field");
+    field.setAttribute("contenteditable", "true");
+    field.innerHTML = "3";
+    field.onkeyup = function() {changeProcessNumber(event)};
+    input.append(field);
+    var error = document.createElement("div");
+    error.classList.add("note-process-input-error");
+    input.append(error);
+    process.append(input);
+
+    var main = document.createElement("div");
+    main.classList.add("note-process-main-container");
+    for (var i = 0; i < 3; i++) {
+        var box = document.createElement("div");
+        box.classList.add("note-process-single-process");
+        box.setAttribute("contenteditable", "true");
+        box.innerHTML = "操作步骤 Step";
+        main.append(box);
+        if (i != 2) {
+            var arrow = document.createElement("img");
+            arrow.setAttribute("src", "../../image/note-process-arrow.png");
+            arrow.setAttribute("height", "40");
+            arrow.classList.add("note-process-arrow");
+            main.append(arrow);
+        }
+    }
+    process.append(main);
+
+    var parent = document.getElementsByClassName("note-container")[0];
+    parent.append(process);
+}
+
+function changeProcessNumber(event) {
+    var process = event.target.parentElement.parentElement;
+    var input = event.target.parentElement;
+    var number = event.target.innerHTML;
+    var num = parseInt(number);
+
+    if (isNaN(num)) {
+        var error = input.childNodes[2];
+        error.innerHTML = "请输入数字-Please enter a number";
+    } else if (num <= 0) {
+        var error = input.childNodes[2];
+        error.innerHTML = "请输入整数-Please enter a positive number";
+    } else if (num > 9){
+        var error = input.childNodes[2];
+        error.innerHTML = "步骤不要大于9-Step number should not be greater than 9";
+    } else {
+        var error = input.childNodes[2];
+        error.innerHTML = "";
+        var main = process.childNodes[1];
+        var total = (main.childNodes.length + 1) / 2;
+        if (num > total) {
+            for (total; total < num; total++) {
+                var arrow = document.createElement("img");
+                arrow.setAttribute("src", "../../image/note-process-arrow.png");
+                arrow.setAttribute("height", "40");
+                arrow.classList.add("note-process-arrow");
+                main.append(arrow);
+                var box = document.createElement("div");
+                box.classList.add("note-process-single-process");
+                box.setAttribute("contenteditable", "true");
+                box.innerHTML = "操作步骤 Step";
+                main.append(box);
+            }
+        } else if (num < total) {
+            for (total; total > num; total--) {
+                var box = main.childNodes[main.childNodes.length - 1];
+                main.removeChild(box);
+                var arrow = main.childNodes[main.childNodes.length - 1];
+                main.removeChild(arrow);
+            }
+        }
+    }
+}
+
 function addMatrix() {
     var matrix = document.createElement("div");
     matrix.classList.add("note-matrix");
@@ -208,7 +295,7 @@ function addTable() {
     var parent = document.getElementsByClassName("note-container")[0];
     parent.append(table);
 }
-var test = 0;
+
 function addColumn(event) {
     var table = event.target.parentElement.parentElement.parentElement.parentElement;
     var youngBro = event.target.parentElement;
