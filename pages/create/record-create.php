@@ -1,8 +1,9 @@
 <!-- List of elements
 IDs:
     record-create-main                  a main that contains all elements for create a record
-    implement-add                       a button to add a new implementation of a plan
+    implement-add-proc-#                a button to add a new implementation of plan #
     plan-add                            a button to add a new plan for the task
+    proc-#                              a div for one process
 Classes:
     create-main                         mains that contains all component to create a new article
     title-field                         editable divs for filling in the title
@@ -17,6 +18,9 @@ Classes:
     record-summary-container            divs contain all elements for the summary part
     record-summary                      divs contain the content of the summary
     submit                              buttons to submit the new article
+    plan-content                        paragraphs to store the content of plans
+    proc-#-imp                          implementations for process #
+    proc-#-rev                          reviews for process #
 Functions:
      addRecordImplement(event)          add a new implementation for the plan
      addRecordPlan()                    add a new plan for the task
@@ -37,18 +41,18 @@ Functions:
                 <p contenteditable="true">详细内容 Details</p>
             </div>
             <div class="processes-container">
-                <div class="a-process">
-                    <di class="a-plan">
+                <div class="a-process" id="proc-1">
+                    <div class="a-plan">
                         <h3>计划-Plan</h3>
-                        <p contenteditable="true">计划内容 Plan Details</p>
-                    </di>
+                        <p contenteditable="true" class="plan-content">计划内容 Plan Details</p>
+                    </div>
                     <table>
                         <tr>
-                            <td><p contenteditable="true" class="an-implement">实施情况 Implement Detail</p></td>
-                            <td><p contenteditable="true" class="a-review">反思 Review</p></td>
+                            <td><p contenteditable="true" class="proc-1-imp an-implement">实施情况 Implement Detail</p></td>
+                            <td><p contenteditable="true" class="proc-1-rev a-review">反思 Review</p></td>
                         </tr>
                     </table>
-                    <button class="add-button" id="implement-add" onclick="addRecordImplement(event)">添加 Add</button>
+                    <button class="add-button" id="implement-add-proc-1" onclick="addRecordImplement(event)">添加 Add</button>
                 </div>
                 <button class="add-button" id="plan-add" onclick="addRecordPlan()">添加 Add</button>
             </div>
@@ -60,5 +64,6 @@ Functions:
             </div>
             <button class="submit" onclick="createRecord()">提交 Submit</button>
         </main>
+        <script src="../../javascript/record-create-js.js"></script>
     </body>
 </html>

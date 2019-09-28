@@ -17,7 +17,7 @@ function addEntrySection() {
         var tool = document.createElement("div");
         tool.classList.add("tool");
         tool.innerHTML = string[i];
-        tool.onclick = addSpecialComponent(event, i);
+        tool.onclick = function() {addSpecialComponent(event, i)};
         bar.append(tool);
     }
     outer.append(bar);

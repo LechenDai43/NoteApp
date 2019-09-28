@@ -50,7 +50,6 @@ Functions:
                             <div class="tool" onclick="addSpecialElement(4)">树状图</div>
                             <div class="tool" onclick="addSpecialElement(5)">环状图</div>
                             <div class="tool" onclick="addSpecialElement(6)">金字塔</div>
-                            <div class="tool" onclick="addSpecialElement(7)">文氏图</div>
                         </div>
                     </td>
                 </tr>
