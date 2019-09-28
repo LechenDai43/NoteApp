@@ -48,8 +48,6 @@ Functions:
                             <div class="tool" onclick="addSpecialElement(2)">矩阵</div>
                             <div class="tool" onclick="addSpecialElement(3)">流程图</div>
                             <div class="tool" onclick="addSpecialElement(4)">树状图</div>
-                            <div class="tool" onclick="addSpecialElement(5)">环状图</div>
-                            <div class="tool" onclick="addSpecialElement(6)">金字塔</div>
                         </div>
                     </td>
                 </tr>
