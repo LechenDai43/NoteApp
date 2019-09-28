@@ -45,7 +45,70 @@ function addSpecialElement(key) {
 }
 
 function addMatrix() {
-    
+    var matrix = document.createElement("div");
+    matrix.classList.add("note-matrix");
+
+    var left = document.createElement("div");
+    left.classList.add("matrix-neg-x-axis");
+    left.setAttribute("contenteditable", "true");
+    left.innerHTML = "-X";
+    matrix.append(left);
+
+    var table = document.createElement("table");
+    table.classList.add("matrix-mid");
+    var r1 = document.createElement("tr");
+    var py = document.createElement("td");
+    py.classList.add("matrix-pos-y-axis");
+    py.setAttribute("contenteditable", "true");
+    py.setAttribute("colspan", "2");
+    py.innerHTML = "+Y";
+    r1.append(py);
+    table.append(r1);
+
+    var r2 = document.createElement("tr");
+    var lt = document.createElement("td");
+    lt.classList.add("matrix-left-top");
+    lt.setAttribute("contenteditable", "true");
+    lt.innerHTML = "-X & +Y";
+    r2.append(lt);
+    var rt = document.createElement("td");
+    rt.classList.add("matrix-right-top");
+    rt.setAttribute("contenteditable", "true");
+    rt.innerHTML = "+X & +Y";
+    r2.append(rt);
+    table.append(r2);
+
+    var r3 = document.createElement("tr");
+    var lb = document.createElement("td");
+    lb.classList.add("matrix-left-bottom");
+    lb.setAttribute("contenteditable", "true");
+    lb.innerHTML = "-X & -Y";
+    r3.append(lb);
+    var rb = document.createElement("td");
+    rb.classList.add("matrix-right-bottom");
+    rb.setAttribute("contenteditable", "true");
+    rb.innerHTML = "+X & -Y";
+    r3.append(rb);
+    table.append(r3);
+
+    var r4 = document.createElement("tr");
+    var ny = document.createElement("td");
+    ny.classList.add("matrix-neg-y-axis");
+    ny.setAttribute("contenteditable", "true");
+    ny.setAttribute("colspan", "2");
+    ny.innerHTML = "-Y";
+    r4.append(ny);
+    table.append(r4);
+    matrix.append(table);
+
+    var right = document.createElement("div");
+    right.classList.add("matrix-pos-x-axis");
+    right.setAttribute("contenteditable", "true");
+    right.innerHTML = "+X";
+    matrix.append(right);
+
+    var parent = document.getElementsByClassName("note-container")[0];
+    parent.append(matrix);
 }
 
 function addList() {
