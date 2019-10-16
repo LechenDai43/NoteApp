@@ -19,11 +19,22 @@ Classes:
     note-comment-content           editable divs contains comment content
     add-button                     buttons to add a specific editable component
     submit                         buttons to submit the new article
+    note-process                   divs contain a whole process
+    note-process-input-number      divs show the number of steps of the corresponding process
+    note-process-input-label       paragraphs used as the label of note-process-input-number
+    note-process-input-field       editable paragraphs that allow user to define the number of steps of a process
+    note-process-input-error       errors that are shown only if user enter an invalid number of steps of a process
+    note-process-main-container    the containers that contain the content of a process
+    note-process-single-process    divs that contains a single step of a process
+    note-process-arrow             images that shows an arrow between steps
+    note-matrix                    divs that contain a whole process
+    matrix-neg-x-axis              the negative direction of x axis of a matrix
+    matrix-mid                     contains the content and the y axis of a matrix
 Functions:
-     addSpecialElement(int)        add a special component to the note content according to the int parameter
-     addNoteCue()                  add a new item into the note cues
-     addNoteComment()              add a new comment into the note comments
-     createNote()                  process the submission of a new note, check the validation and send content to php
+    addSpecialElement(int)         add a special component to the note content according to the int parameter
+    addNoteCue()                   add a new item into the note cues
+    addNoteComment()               add a new comment into the note comments
+    createNote()                   process the submission of a new note, check the validation and send content to php
 -->
 <html>
     <head>
@@ -47,7 +58,6 @@ Functions:
                             <div class="tool" onclick="addSpecialElement(1)">表格</div>
                             <div class="tool" onclick="addSpecialElement(2)">矩阵</div>
                             <div class="tool" onclick="addSpecialElement(3)">流程图</div>
-                            <div class="tool" onclick="addSpecialElement(4)">树状图</div>
                         </div>
                     </td>
                 </tr>

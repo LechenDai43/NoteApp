@@ -45,8 +45,7 @@ Functions:
                     <div class="entry-tool-bar">
                         <div class="tool" onclick="addSpecialComponent(event, 0)">列表</div>
                         <div class="tool" onclick="addSpecialComponent(event, 1)">表格</div>
-                        <div class="tool" onclick="addSpecialComponent(event, 2)">矩阵</div>
-                        <div class="tool" onclick="addSpecialComponent(event, 3)">图片</div>
+                        <div class="tool" onclick="addSpecialComponent(event, 2)">图片</div>
                     </div>
                     <div class="section-container">
                         <p class="in-section-p" contenteditable="true">章节内容 Chapter Content</p>

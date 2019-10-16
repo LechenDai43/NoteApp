@@ -32,9 +32,6 @@ function addSpecialElement(key) {
         case 3:
             addProcess();
             break;
-        case 4:
-            addTree();
-            break;
     }
     var newContent = document.createElement("p");
     newContent.classList.add("note-content-p");
