@@ -30,6 +30,23 @@ Classes:
     note-matrix                    divs that contain a whole process
     matrix-neg-x-axis              the negative direction of x axis of a matrix
     matrix-mid                     contains the content and the y axis of a matrix
+    matrix-pos-y-axis              the positive direction of y axis of a matrix
+    matrix-left-top                table cells that contain the content of (-x,+y)
+    matrix-right-top               table cells that contain the content of (+x,+y)
+    matrix-left-bottom             table cells that contain the content of (-x,-y)
+    matrix-right-bottom            table cells that contain the content of (+x,-y)
+    matrix-neg-y-axis              the negative direction of y axis of a matrix
+    matrix-pos-x-axis              the positive direction of x axis of a matrix
+    note-list                      lists that contain a whole list
+    note-list-item                 elements in a list
+    list-item-add                  add one more element in list
+    note-table                     tables that contain a whole table
+    note-table-head                the table head of a table
+    note-table-header              table cells in the table head of a table
+    table-column-add               the button to add a new column into a table
+    note-table-body                a row of the body of a table
+    note-table-cells               table cells that belong to the table body
+    table-row-add                  button to add a new row into a table
 Functions:
     addSpecialElement(int)         add a special component to the note content according to the int parameter
     addNoteCue()                   add a new item into the note cues

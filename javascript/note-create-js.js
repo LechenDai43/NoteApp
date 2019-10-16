@@ -265,7 +265,7 @@ function addTable() {
     var tbody = document.createElement("tbody");
     for (var i = 0; i < 2; i++) {
         var row = document.createElement("tr");
-        row.classList.add("note-table-head");
+        row.classList.add("note-table-body");
         for (var j = 0; j < 2; j++) {
             var cell = document.createElement("td");
             var p = document.createElement("p");
