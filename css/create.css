@@ -10,18 +10,48 @@
     padding-left: 10%;
 }
 
-.tool {
+h3 {
+    margin-left: 20px;
+}
 
+.title-field {
+    border-style: solid;
+    border-width: 0px 1px 1px 0px;
+    height: 24px;
+    padding: 2px;
+    font-size: 20px;
+}
+
+.tag-field {
+    border-style: solid;
+    border-width: 0px 1px 1px 0px;
+    padding: 2px;
+}
+
+.add-button {
+    background: inherit;
+    margin: 5px;
+}
+
+.add-button:hover {
+    background: lightgray;
+}
+
+.submit {
+    background: inherit;
+    margin-top: 20px;
+    border-style: outset;
+}
+
+.submit:hover {
+    background: lightcyan;
+}
+
+.submit:active {
+    border-style: inset;
 }
 
 <!-- end for elements in common -->
-
-<!-- css for common-create.php -->
-
-.non-class {}
-
-
-<!-- end for common-create.php -->
 
 <!-- css for note-create.php -->
 
@@ -31,6 +61,27 @@
     align-items: center;
     display: flex;
 }
+
+.tool {
+    margin-left: 2px;
+    margin-right: 3px;
+    width: 50px;
+    border-style: solid;
+    border-width: 0px 1px 0px 0px;
+    text-align: center;
+}
+
+.note-tool-bar {
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    padding: 2px;
+}
+
+.tool:hover {
+    background: lightgray;
+}
+
+
 <!-- end for note-create.php -->
 
 <!-- css for entry-create.php -->

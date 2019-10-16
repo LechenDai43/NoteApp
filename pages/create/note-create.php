@@ -4,11 +4,9 @@ IDs:
     note-cue-add                   a button to add new item into the cue list
     note-comment-add               a button to add new comment
 Classes:
-    create-main                    mains that contains all component to create a new article
-    title-field                    editable divs for filling in the title
-    tag-field                      editable divs for filling in tags
     note-tool-bar                  divs contains all the tools as clickable element to add special content
     tool                           divs needed to be clickable that adds special content to the section
+    note-root-table                table contains the main part of the note
     cue-container                  divs contains all component for note cue
     cue-content                    editable divs contains the content of note cue
     note-container                 divs contains all component for note content
@@ -17,8 +15,6 @@ Classes:
     note-summary                   editable divs contains note summary
     note-comment                   divs contains all component for comment **the so-called comment is others' notes
     note-comment-content           editable divs contains comment content
-    add-button                     buttons to add a specific editable component
-    submit                         buttons to submit the new article
     note-process                   divs contain a whole process
     note-process-input-number      divs show the number of steps of the corresponding process
     note-process-input-label       paragraphs used as the label of note-process-input-number
@@ -64,15 +60,15 @@ Functions:
             <hr/>
             <?php include_once 'common-create.php'; ?>
             <h3>笔记-Note</h3>
-            <table>
+            <table class="note-root-table">
                 <tr>
                     <td>
                         Cues
                     </td>
                     <td>
                         <div class="note-tool-bar">
-                            <div class="tool" onclick="addSpecialElement(0)">列表</div>
-                            <div class="tool" onclick="addSpecialElement(1)">表格</div>
+                            <div class="tool" onclick="addSpecialElement(1)">列表</div>
+                            <div class="tool" onclick="addSpecialElement(0)">表格</div>
                             <div class="tool" onclick="addSpecialElement(2)">矩阵</div>
                             <div class="tool" onclick="addSpecialElement(3)">流程图</div>
                         </div>

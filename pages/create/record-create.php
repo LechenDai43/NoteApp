@@ -5,10 +5,6 @@ IDs:
     plan-add                            a button to add a new plan for the task
     proc-#                              a div for one process
 Classes:
-    create-main                         mains that contains all component to create a new article
-    title-field                         editable divs for filling in the title
-    tag-field                           editable divs for filling in tags
-    add-button                          buttons to add a specific editable component
     description-container               divs contain all elements for the task description
     processes-container                 divs contain all elements for how the task gets done
     a-process                           divs contain elements for the plan and the implementation of that plan
@@ -17,7 +13,6 @@ Classes:
     a-review                            divs contain a review of a implementation of one plan for the task
     record-summary-container            divs contain all elements for the summary part
     record-summary                      divs contain the content of the summary
-    submit                              buttons to submit the new article
     plan-content                        paragraphs to store the content of plans
     proc-#-imp                          implementations for process #
     proc-#-rev                          reviews for process #

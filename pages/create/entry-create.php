@@ -4,9 +4,6 @@ IDs:
     entry-section-add                     a button to add a new section
     entry-reference-add                   a button to add new reference
 Classes:
-    create-main                           mains that contains all component to create a new article
-    title-field                           editable divs for filling in the title
-    tag-field                             editable divs for filling in tags
     introduction-container                divs that contains all elements for the introduction
     all-section                           divs that contains all sections for this entry
     a-group                               divs that contains all elements for creating a section
@@ -14,9 +11,7 @@ Classes:
     tool                                  divs needed to be clickable that adds special content to the section
     section-container                     divs contains all elements for a single section
     in-section-p                          ps for the content of a single section
-    add-button                            buttons to add a specific editable component
     reference-container                   divs to contains all information about reference
-    submit                                buttons to submit the new article
     entry-ref-list                        order lists for the references of an entry
 Functions:
     addSpecialComponent(event, int)       add a special component to a section according to the int parameter
