@@ -62,7 +62,7 @@ Functions:
             <h3>笔记-Note</h3>
             <table class="note-root-table">
                 <tr>
-                    <td>
+                    <td class="note-root-left-column">
                         Cues
                     </td>
                     <td>
@@ -75,7 +75,7 @@ Functions:
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="note-root-left-column">
                         <div class="cue-container">
                             <p class="cue-content" contenteditable="true">
                                 &#8226

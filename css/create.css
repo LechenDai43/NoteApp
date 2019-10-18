@@ -81,7 +81,9 @@ h3 {
     background: lightgray;
 }
 
-
+.note-root-left-column {
+    width: 150px;
+}
 <!-- end for note-create.php -->
 
 <!-- css for entry-create.php -->
