@@ -43,6 +43,7 @@ Classes:
     note-table-body                a row of the body of a table
     note-table-cells               table cells that belong to the table body
     table-row-add                  button to add a new row into a table
+    table-note-btn-row             a row contain the add row button of the note table
 Functions:
     addSpecialElement(int)         add a special component to the note content according to the int parameter
     addNoteCue()                   add a new item into the note cues

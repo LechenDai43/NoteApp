@@ -57,9 +57,74 @@ h3 {
 
 .non-class {}
 
+.matrix-left-top {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 5px;
+}
+
+.matrix-right-top {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    padding: 5px;
+}
+
+.matrix-left-bottom {
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    padding: 5px;
+}
+
+.matrix-right-bottom {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    padding: 5px;
+}
+
+.note-table td{
+    padding: 2px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    margin: 2px;
+}
+
+.note-table th{
+    border-bottom-style: double;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+    margin: 2px;
+}
+
+.note-table th:last-child {
+    border-style: none;
+}
+
+.table-note-btn-row td {
+    border-style: none;
+}
+
 .note-tool-bar {
     align-items: center;
     display: flex;
+}
+
+.note-matrix {
+    display: flex;
+    align-items: center;
+}
+
+.note-matrix div {
+    padding: 5px;
+    margin: 10px;
+}
+
+.matrix-pos-y-axis {
+    text-align: center;
+}
+
+.matrix-neg-y-axis {
+    text-align: center;
 }
 
 .tool {

@@ -283,6 +283,7 @@ function addTable() {
     btnRow.onclick = function() {addRow(event)};
     btnRow.innerHTML = "+";
     var tr = document.createElement("tr");
+    tr.classList.add("table-note-btn-row");
     var td = document.createElement("td");
     td.append(btnRow);
     tr.append(td);
