@@ -73,7 +73,7 @@ function addProcess() {
         if (i != 2) {
             var arrow = document.createElement("img");
             arrow.setAttribute("src", "../../image/note-process-arrow.png");
-            arrow.setAttribute("height", "40");
+            arrow.setAttribute("height", "25");
             arrow.classList.add("note-process-arrow");
             main.append(arrow);
         }
@@ -108,7 +108,7 @@ function changeProcessNumber(event) {
             for (total; total < num; total++) {
                 var arrow = document.createElement("img");
                 arrow.setAttribute("src", "../../image/note-process-arrow.png");
-                arrow.setAttribute("height", "40");
+                arrow.setAttribute("height", "25");
                 arrow.classList.add("note-process-arrow");
                 main.append(arrow);
                 var box = document.createElement("div");

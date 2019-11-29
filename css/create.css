@@ -149,6 +149,49 @@ h3 {
 .note-root-left-column {
     width: 150px;
 }
+
+.note-process-input-field {
+    width: 35px;
+    border: 2px lightblue groove;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.note-process-input-number {
+    align-items: center;
+    display: flex;
+
+}
+
+.note-process-main-container {
+    align-items: center;
+    display: flex;
+}
+
+.note-process-single-process {
+    width: 75px;
+    height: 150px;
+    overflow: auto;
+}
+
+.note-process-input-error {
+    height: 10px;
+    margin-bottom: 5px;
+    font-size: 9px;
+}
+
+.note-content-p {
+    padding: 2px;
+}
+
+.note-comment-content {
+    width: 66%;
+    padding: 10px;
+    border-bottom: 2px double darkgray;
+    border-left: 1px solid lightgray;
+    margin-bottom: 15px;
+}
+
 <!-- end for note-create.php -->
 
 <!-- css for entry-create.php -->
