@@ -12,8 +12,8 @@ function addEntrySection() {
 
     var bar = document.createElement("div");
     bar.classList.add("entry-tool-bar");
-    var string = ["列表", "表格", "矩阵", "图片", "树状图", "文氏图"];
-    for (var i = 0; i < 6; i++) {
+    var string = ["列表", "表格", "图片"];
+    for (var i = 0; i < 3; i++) {
         var tool = document.createElement("div");
         tool.classList.add("tool");
         tool.innerHTML = string[i];
@@ -44,5 +44,47 @@ function addEntryReference() {
 }
 
 function addSpecialComponent(event, key) {
+    var group = event.target.parentElement.parentElement;
+    switch (key) {
+        case 0:
+            addSpecialList(group);
+            break;
+        case 1:
+            addSpecialTable(group);
+            break;
+        case 2:
+            addSpecialImage(group);
+            break;
+    }
+}
 
+function addEntryContent(group) {
+    console.log("get in the function");
+    var con = document.createElement("p");
+    con.classList.add("in-section-p");
+    con.setAttribute("contenteditable", "true");
+    con.innerHTML = "章节内容 Chapter Content";
+    group.append(con);
+}
+
+function addSpecialList(group) {
+    var list = document.createElement("ul");
+    list.classList.add("note-list");
+
+    var li = document.createElement("li");
+    li.classList.add("note-list-item");
+    li.setAttribute("contenteditable", "true");
+    li.innerHTML = "内容 Content";
+
+    list.append(li);
+
+    var btn = document.createElement("button");
+    btn.classList.add("add-button");
+    btn.classList.add("list-item-add");
+    btn.onclick = function() {addListItem(event)};
+    btn.innerHTML = "+";
+    list.append(btn);
+
+    group.append(list);
+    addEntryContent(group);
 }
