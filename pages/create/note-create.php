@@ -109,5 +109,6 @@ Functions:
             <button class="submit" onclick="createNote()">提交 Submit</button>
         </main>
         <script src="../../javascript/note-create-js.js"></script>
+        <script src="../../javascript/create-submit-js.js"></script>
     </body
 </html>

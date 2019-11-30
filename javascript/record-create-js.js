@@ -80,3 +80,9 @@ function addRecordPlan() {
     parent.insertBefore(proc, youngBro);
 }
 
+function createRecord() {
+    var js = checkCommon();
+    if (!js) {
+        return;
+    }
+}

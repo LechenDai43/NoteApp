@@ -61,5 +61,6 @@ Functions:
             <button class="submit" onclick="createRecord()">提交 Submit</button>
         </main>
         <script src="../../javascript/record-create-js.js"></script>
+        <script src="../../javascript/create-submit-js.js"></script>
     </body>
 </html>

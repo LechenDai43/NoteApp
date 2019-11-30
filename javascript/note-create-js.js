@@ -340,3 +340,116 @@ function addNoteRow(event) {
     tbody.insertBefore(row, youngBro);
 }
 
+function createNote() {
+    var js = checkCommon();
+    if (!js) {
+        return;
+    }
+
+    var cues = document.getElementsByClassName("cue-content");
+    var cue_arr = [];
+    for (var i = 0; i < cues.length; i++) {
+        var line = cues[i].innerHTML;
+        line = line.replace("•", "");
+        line = line.trimLeft().trimRight();
+        if (line === "") {
+            continue;
+        }
+        cue_arr.push(line);
+    }
+    if (cue_arr.length === 0) {
+        alert("Please fill out cue.");
+        return;
+    }
+    js["cue"] = cue_arr;
+
+    var contents_e = document.getElementsByClassName("note-container")[0].childNodes;
+    var contents = [];
+    for (var i = 1; i < contents_e.length; i++) {
+        if (i !== 2) {
+            var element = contents_e[i];
+            var js_back;
+            if (element.classList.contains("note-content-p")) {
+                js_back = packNoteContent(element);
+                if (!js_back) {
+                    return;
+                }
+                contents.push(js_back);
+            } else if (element.classList.contains("note-list")) {
+                js_back = packNoteList(element);
+                if (!js_back) {
+                    return;
+                }
+                contents.push(js_back);
+            } else if (element.classList.contains("note-table")) {
+                js_back = packNoteTable(element);
+                if (!js_back) {
+                    return;
+                }
+                contents.push(js_back);
+            } else if (element.classList.contains("note-matrix")) {
+                js_back = packNoteMatrix(element);
+                if (!js_back) {
+                    return;
+                }
+                contents.push(js_back);
+            } else if (element.classList.contains("note-process")) {
+                js_back = packNoteProcess(element);
+                if (!js_back) {
+                    return;
+                }
+                contents.push(js_back);
+            } else {
+                console.log(element);
+                alert("Unidentified element.")
+                return;
+            }
+        }
+    }
+    js['content'] = contents;
+
+    var sum = document.getElementsByClassName("note-summary")[0].innerHTML;
+    sum = sum.trimRight().trimLeft();
+    if (sum === "总结 Summary" || sum.length < 1) {
+        alert("Please fill in summary.")
+        return;
+    }
+    js['summary'] = sum;
+
+    var comments = document.getElementsByClassName("note-comment-content");
+    var comment = [];
+    for (var i = 0; i < comments.length; i++) {
+        var tem = packNoteComment(comments[i]);
+        if (!tem) {
+            continue;
+        }
+        comment.push(tem);
+    }
+    js['comment'] = comment;
+
+    console.log(js);
+}
+
+function packNoteContent(element) {
+    return 1;
+}
+
+function packNoteList(element) {
+    return 1;
+}
+
+function packNoteTable(element) {
+    return 1;
+}
+
+function packNoteMatrix(element) {
+    return 1;
+}
+
+function packNoteProcess(element) {
+    return 1;
+}
+
+function packNoteComment(element) {
+    return 1;
+}

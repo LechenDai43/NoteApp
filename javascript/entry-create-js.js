@@ -254,3 +254,10 @@ function addEntryListItem(event) {
 
     list.insertBefore(li, youngBro);
 }
+
+function createEntry() {
+    var js = checkCommon();
+    if (!js) {
+        return;
+    }
+}
