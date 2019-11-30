@@ -365,6 +365,13 @@ function addNoteRow(event) {
     tbody.insertBefore(row, youngBro);
 }
 
+/*
+    Below is the code for the followings:
+    1. checking validation of inputs;
+    2. making inputs into json;
+    3. send inputs-json to backend.
+ */
+
 function createNote() {
     var js = checkCommon();
     if (!js) {
@@ -495,7 +502,7 @@ function packNoteTable(element) {
     var head = [], len = 0;
     var thead = element.childNodes[0].childNodes[0].childNodes;
     for (var i = 0; i < thead.length - 1; i++) {
-        var value = thead[i].innerHTML;
+        var value = thead[i].childNodes[0].innerText;
         value = value.trimLeft().trimRight();
         if (value.length < 1 || value === "字节 Head") {
             break;
@@ -514,7 +521,7 @@ function packNoteTable(element) {
         var eles = tbody[i].childNodes;
         var count = 0;
         for (var j = 0; j < len; j++) {
-            var value = eles[j].innerHTML;
+            var value = eles[j].innerText;
             value = value.trimLeft().trimRight();
             if (value.length === 0 || value === "内容 Content") {
                 row[head[j]] = "N/A";
@@ -581,7 +588,7 @@ function packNoteMatrix(element) {
         box["-x+y"] = value;
         count++;
     }
-    value = element.childNodes[1].childNodes[1].childNodes[2].innerText;
+    value = element.childNodes[1].childNodes[1].childNodes[1].innerText;
     value = value.trimRight().trimLeft();
     if (value.length === 0 || value === "+X & +Y") {
         box["+x+y"] = "N/A";
@@ -597,7 +604,7 @@ function packNoteMatrix(element) {
         box["-x-y"] = value;
         count++;
     }
-    value = element.childNodes[1].childNodes[2].childNodes[2].innerText;
+    value = element.childNodes[1].childNodes[2].childNodes[1].innerText;
     value = value.trimRight().trimLeft();
     if (value.length === 0 || value === "+X & -Y") {
         box["+x-y"] = "N/A";

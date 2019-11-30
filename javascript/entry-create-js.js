@@ -1,3 +1,5 @@
+var gimg;
+
 function addEntrySection() {
     var outer = document.createElement("div");
     outer.classList.add("a-group");
@@ -212,7 +214,6 @@ function addEntryRow(event) {
     tbody.insertBefore(row, youngBro);
 }
 
-
 function addSpecialImage(group) {
     var outer = document.createElement("div");
     outer.classList.add("entry-outer-image");
@@ -239,8 +240,6 @@ function addSpecialImage(group) {
     group.append(outer);
     addEntryContent(group);
 }
-
-var gimg;
 
 function inputImage(event) {
     var value = event.target.value;
@@ -278,4 +277,6 @@ function createEntry() {
     if (!js) {
         return;
     }
+
+
 }
