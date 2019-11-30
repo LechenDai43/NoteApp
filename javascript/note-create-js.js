@@ -431,11 +431,39 @@ function createNote() {
 }
 
 function packNoteContent(element) {
-    return 1;
+    var content = element.innerHTML;
+    content = content.trimLeft().trimRight();
+    if (content.length === 0 || content === "请在此添加内容 Please Fill Content Here") {
+        alert("Please fill in content.");
+        return false;
+    }
+    var result = [];
+    result['type'] = 'paragraph';
+    result['content'] = content;
+    return result;
 }
 
 function packNoteList(element) {
-    return 1;
+    var items = element.childNodes;
+    var item = [];
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].classList.contains("note-list-item")) {
+            var value = items[i].innerHTML;
+            value = value.trimRight().trimLeft();
+            if (value.length === 0 || value === "内容 Content") {
+                continue;
+            }
+            item.push(value);
+        }
+    }
+    if (item.length === 0) {
+        alert("Please add at least on item in the list.")
+        return false;
+    }
+    var result = [];
+    result['type'] = 'list';
+    result['content'] = item;
+    return result;
 }
 
 function packNoteTable(element) {
