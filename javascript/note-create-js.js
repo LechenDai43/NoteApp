@@ -467,17 +467,162 @@ function packNoteList(element) {
 }
 
 function packNoteTable(element) {
-    return 1;
+    var head = [], len = 0;
+    var thead = element.childNodes[0].childNodes[0].childNodes;
+    for (var i = 0; i < thead.length - 1; i++) {
+        var value = thead[i].innerHTML;
+        value = value.trimLeft().trimRight();
+        if (value.length < 1 || value === "字节 Head") {
+            break;
+        }
+        head.push(value);
+        len++;
+    }
+    if (len === 0) {
+        alert("There is no valid table head.");
+        return false;
+    }
+    var tbody = element.childNodes[1].childNodes;
+    var table = [];
+    for (var i = 0; i < tbody.length - 1; i++) {
+        var row = [];
+        var eles = tbody[i].childNodes;
+        var count = 0;
+        for (var j = 0; j < len; j++) {
+            var value = eles[j].innerHTML;
+            value = value.trimLeft().trimRight();
+            if (value.length === 0 || value === "内容 Content") {
+                row[head[j]] = "N/A";
+            } else {
+                row[head[j]] = value;
+                count++;
+            }
+        }
+        if (count > 0) {
+            table.push(row);
+        }
+    }
+    if (table.length < 1) {
+        alert("Please fill some data into the table.");
+        return false;
+    }
+    var result = [];
+    result['type'] = "table";
+    result['head'] = head;
+    result['table'] = table;
+    return result;
 }
 
 function packNoteMatrix(element) {
-    return 1;
+    var x = [], y = [];
+
+    var value = element.childNodes[0].innerHTML;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "-X") {
+        alert("Please fill in the negative x value.");
+        return false;
+    }
+    x['negative'] = value;
+    value = element.childNodes[2].innerHTML;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "+X") {
+        alert("Please fill in the positive x value.");
+        return false;
+    }
+    x['positive'] = value;
+
+    value = element.childNodes[1].childNodes[0].innerText;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "+Y") {
+        alert("Please fill in the positive y value.");
+        return false;
+    }
+    y['positive'] = value;
+    value = element.childNodes[1].childNodes[3].innerText;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "-Y") {
+        alert("Please fill in the negative y value.");
+        return false;
+    }
+    y['negative'] = value;
+
+    var box = [];
+    var count = 0;
+    value = element.childNodes[1].childNodes[1].childNodes[0].innerText;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "-X & +Y") {
+        box["-x+y"] = "N/A";
+    } else {
+        box["-x+y"] = value;
+        count++;
+    }
+    value = element.childNodes[1].childNodes[1].childNodes[2].innerText;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "+X & +Y") {
+        box["+x+y"] = "N/A";
+    } else {
+        box["+x+y"] = value;
+        count++;
+    }
+    value = element.childNodes[1].childNodes[2].childNodes[0].innerText;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "-X & -Y") {
+        box["-x-y"] = "N/A";
+    } else {
+        box["-x-y"] = value;
+        count++;
+    }
+    value = element.childNodes[1].childNodes[2].childNodes[2].innerText;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "+X & -Y") {
+        box["+x-y"] = "N/A";
+    } else {
+        box["+x-y"] = value;
+        count++;
+    }
+
+    if (count < 2) {
+        alert("Please fill in at least two position in the matrix.");
+        return false;
+    }
+
+    var result = [];
+    result['type'] = "matrix";
+    result["x"] = x;
+    result["y"] = y;
+    result["content"] = box;
+    return result;
 }
 
 function packNoteProcess(element) {
-    return 1;
+    var prs = element.childNodes[1].childNodes;
+    var result = [];
+    var content = [];
+    for (var i = 0; i < prs.length; i++) {
+        if (prs[i].classList.contains("note-process-single-process")) {
+            var value = prs[i].innerHTML;
+            value = value.trimLeft().trimRight();
+            if (value.length === 0 || value === "操作步骤 Step") {
+                alert("Please fill in steps.");
+                return false;
+            }
+            content.push(value);
+        }
+    }
+    if (content.length < 1) {
+        alert("Please fill in steps.");
+        return false;
+    }
+    result['type'] = "process";
+    result['content'] = content;
+    return result;
 }
 
 function packNoteComment(element) {
-    return 1;
+    var value = element.innerHTML;
+    value = value.trimRight().trimLeft();
+    if (value.length === 0 || value === "请在此添加新的评论 Comment Here") {
+        return false;
+    }
+    return value;
 }
