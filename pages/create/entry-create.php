@@ -59,7 +59,6 @@ Functions:
             <button class="submit" onclick="createEntry()">提交 Submit</button>
         </main>
         <script src="../../javascript/entry-create-js.js"></script>
-        <script src="../../javascript/note-create-js.js"></script>
     </body>
 </html>
 

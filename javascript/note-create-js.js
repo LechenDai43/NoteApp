@@ -209,7 +209,7 @@ function addList() {
     var btn = document.createElement("button");
     btn.classList.add("add-button");
     btn.classList.add("list-item-add");
-    btn.onclick = function() {addListItem(event)};
+    btn.onclick = function() {addNoteListItem(event)};
     btn.innerHTML = "+";
     list.append(btn);
 
@@ -217,7 +217,7 @@ function addList() {
     parent.append(list);
 }
 
-function addListItem(event) {
+function addNoteListItem(event) {
     var list = event.target.parentElement;
     var youngBro = event.target;
     var li = document.createElement("li");
@@ -253,7 +253,7 @@ function addTable() {
         var btnCol = document.createElement("button");
         btnCol.classList.add("add-button");
         btnCol.classList.add("table-column-add");
-        btnCol.onclick = function() {addColumn(event)};
+        btnCol.onclick = function() {addNoteColumn(event)};
         btnCol.innerHTML = "+";
         addCol.append(btnCol);
     trh.append(left);
@@ -280,7 +280,7 @@ function addTable() {
     var btnRow = document.createElement("button");
     btnRow.classList.add("add-button");
     btnRow.classList.add("table-row-add");
-    btnRow.onclick = function() {addRow(event)};
+    btnRow.onclick = function() {addNoteRow(event)};
     btnRow.innerHTML = "+";
     var tr = document.createElement("tr");
     tr.classList.add("table-note-btn-row");
@@ -294,7 +294,7 @@ function addTable() {
     parent.append(table);
 }
 
-function addColumn(event) {
+function addNoteColumn(event) {
     var table = event.target.parentElement.parentElement.parentElement.parentElement;
     var youngBro = event.target.parentElement;
     var thead = table.childNodes[0];
@@ -320,7 +320,7 @@ function addColumn(event) {
     }
 }
 
-function addRow(event) {
+function addNoteRow(event) {
     var youngBro = event.target.parentElement.parentElement;
     var tbody = youngBro.parentElement;
 
@@ -339,3 +339,4 @@ function addRow(event) {
 
     tbody.insertBefore(row, youngBro);
 }
+

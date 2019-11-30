@@ -68,10 +68,10 @@ function addEntryContent(group) {
 
 function addSpecialList(group) {
     var list = document.createElement("ul");
-    list.classList.add("note-list");
+    list.classList.add("entry-list");
 
     var li = document.createElement("li");
-    li.classList.add("note-list-item");
+    li.classList.add("entry-list-item");
     li.setAttribute("contenteditable", "true");
     li.innerHTML = "内容 Content";
 
@@ -80,7 +80,7 @@ function addSpecialList(group) {
     var btn = document.createElement("button");
     btn.classList.add("add-button");
     btn.classList.add("list-item-add");
-    btn.onclick = function() {addListItem(event)};
+    btn.onclick = function() {addEntryListItem(event)};
     btn.innerHTML = "+";
     list.append(btn);
 
@@ -90,21 +90,21 @@ function addSpecialList(group) {
 
 function addSpecialTable(group) {
     var table = document.createElement("table");
-    table.classList.add("note-table");
+    table.classList.add("entry-table");
 
     var thead = document.createElement("thead");
     var trh = document.createElement("tr");
-    trh.classList.add("note-table-head");
+    trh.classList.add("entry-table-head");
     var left = document.createElement("th");
     var lp = document.createElement("p");
-    lp.classList.add("note-table-header");
+    lp.classList.add("entry-table-header");
     lp.setAttribute("contenteditable", "true");
     lp.innerHTML = "字节 Head";
     left.append(lp);
 
     var right = document.createElement("th");
     var rp = document.createElement("p");
-    rp.classList.add("note-table-header")
+    rp.classList.add("entry-table-header")
     rp.setAttribute("contenteditable", "true");
     rp.innerHTML = "字节 Head";
     right.append(rp);
@@ -112,8 +112,8 @@ function addSpecialTable(group) {
     var addCol = document.createElement("th");
     var btnCol = document.createElement("button");
     btnCol.classList.add("add-button");
-    btnCol.classList.add("table-column-add");
-    btnCol.onclick = function() {addColumn(event)};
+    btnCol.classList.add("entry-column-add");
+    btnCol.onclick = function() {addEntryColumn(event)};
     btnCol.innerHTML = "+";
     addCol.append(btnCol);
     trh.append(left);
@@ -125,11 +125,11 @@ function addSpecialTable(group) {
     var tbody = document.createElement("tbody");
     for (var i = 0; i < 2; i++) {
         var row = document.createElement("tr");
-        row.classList.add("note-table-body");
+        row.classList.add("entry-table-body");
         for (var j = 0; j < 2; j++) {
             var cell = document.createElement("td");
             var p = document.createElement("p");
-            p.classList.add("note-table-cells");
+            p.classList.add("entry-table-cells");
             p.setAttribute("contenteditable", "true");
             p.innerHTML = "内容 Content";
             cell.append(p);
@@ -139,11 +139,11 @@ function addSpecialTable(group) {
     }
     var btnRow = document.createElement("button");
     btnRow.classList.add("add-button");
-    btnRow.classList.add("table-row-add");
-    btnRow.onclick = function() {addRow(event)};
+    btnRow.classList.add("entry-row-add");
+    btnRow.onclick = function() {addEntryRow(event)};
     btnRow.innerHTML = "+";
     var tr = document.createElement("tr");
-    tr.classList.add("table-note-btn-row");
+    tr.classList.add("table-entry-btn-row");
     var td = document.createElement("td");
     td.append(btnRow);
     tr.append(td);
@@ -153,6 +153,53 @@ function addSpecialTable(group) {
     group.append(table);
     addEntryContent(group);
 }
+
+function addEntryColumn(event) {
+    var table = event.target.parentElement.parentElement.parentElement.parentElement;
+    var youngBro = event.target.parentElement;
+    var thead = table.childNodes[0];
+    var tbody = table.childNodes[1];
+
+    var th = document.createElement("th");
+    var ph = document.createElement("p");
+    ph.classList.add("entry-table-header");
+    ph.setAttribute("contenteditable", "true");
+    ph.innerHTML = "字节 Head";
+    th.append(ph);
+    thead.childNodes[0].insertBefore(th, youngBro);
+
+    for (var i = 0; i < tbody.childNodes.length - 1; i++) {
+        var row = tbody.childNodes[i];
+        var cell = document.createElement("td");
+        var p = document.createElement("p");
+        p.classList.add("entry-table-cells");
+        p.setAttribute("contenteditable", "true");
+        p.innerHTML = "内容 Content";
+        cell.append(p);
+        row.append(cell);
+    }
+}
+
+function addEntryRow(event) {
+    var youngBro = event.target.parentElement.parentElement;
+    var tbody = youngBro.parentElement;
+
+    var length = tbody.childNodes[0].childNodes.length;
+    var row = document.createElement("tr");
+    row.classList.add("entry-table-head");
+    for (var j = 0; j < length; j++) {
+        var cell = document.createElement("td");
+        var p = document.createElement("p");
+        p.classList.add("entry-table-cells");
+        p.setAttribute("contenteditable", "true");
+        p.innerHTML = "内容 Content";
+        cell.append(p);
+        row.append(cell);
+    }
+
+    tbody.insertBefore(row, youngBro);
+}
+
 
 function addSpecialImage(group) {
     var outer = document.createElement("div");
@@ -195,4 +242,15 @@ function inputImage(event) {
 
 function changeImage(event) {
     event.target.parentElement.childNodes[0].setAttribute("style", "display:show;");
+}
+
+function addEntryListItem(event) {
+    var list = event.target.parentElement;
+    var youngBro = event.target;
+    var li = document.createElement("li");
+    li.classList.add("entry-list-item");
+    li.setAttribute("contenteditable", "true");
+    li.innerHTML = "内容 Content";
+
+    list.insertBefore(li, youngBro);
 }
