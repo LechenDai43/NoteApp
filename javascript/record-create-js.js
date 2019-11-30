@@ -2,6 +2,9 @@ function addRecordImplement(event) {
     var btn = event.target;
     var proc = btn.parentElement;
     var table = proc.childNodes[1];
+    if (table.classList.contains("a-plan")) {
+        table = proc.childNodes[3];
+    }
 
     var tr = document.createElement("tr");
 
