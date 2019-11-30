@@ -44,7 +44,7 @@ function addEntryReference() {
 }
 
 function addSpecialComponent(event, key) {
-    var group = event.target.parentElement.parentElement;
+    var group = event.target.parentElement.parentElement.childNodes[7];
     switch (key) {
         case 0:
             addSpecialList(group);
