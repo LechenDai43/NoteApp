@@ -80,6 +80,13 @@ function addProcess() {
     }
     process.append(main);
 
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    process.append(remove);
+
+
     var parent = document.getElementsByClassName("note-container")[0];
     parent.append(process);
 }
@@ -191,6 +198,12 @@ function addMatrix() {
     right.innerHTML = "+X";
     matrix.append(right);
 
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    matrix.append(remove);
+
     var parent = document.getElementsByClassName("note-container")[0];
     parent.append(matrix);
 }
@@ -212,6 +225,12 @@ function addList() {
     btn.onclick = function() {addNoteListItem(event)};
     btn.innerHTML = "+";
     list.append(btn);
+
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    list.append(remove);
 
     var parent = document.getElementsByClassName("note-container")[0];
     parent.append(list);
@@ -289,6 +308,12 @@ function addTable() {
     tr.append(td);
     tbody.append(tr);
     table.append(tbody);
+
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    table.append(remove);
 
     var parent = document.getElementsByClassName("note-container")[0];
     parent.append(table);

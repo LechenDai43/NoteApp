@@ -1,3 +1,21 @@
+function removeElement(event) {
+    var main = event.target.parentElement;
+    var sebling = main.parentElement.childNodes;
+    var next, before;
+    for (var i = 1; i < sebling.length - 1; i++) {
+        if (sebling[i] === main) {
+            next = sebling[i + 1];
+            before = sebling[i - 1];
+            break;
+        }
+    }
+    before.innerHTML += "\n" + next.innerHTML;
+    var parent = main.parentElement;
+    parent.removeChild(main);
+    parent.removeChild(next);
+
+}
+
 function checkCommon() {
     var title = document.getElementsByClassName("title-field")[0].innerHTML;
     title = title.trimRight().trimLeft();

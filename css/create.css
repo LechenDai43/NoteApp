@@ -33,7 +33,16 @@ h3 {
     margin: 5px;
 }
 
+.remove-btn {
+    background: inherit;
+    margin: 5px;
+}
+
 .add-button:hover {
+    background: lightgray;
+}
+
+.remove-btn:hover {
     background: lightgray;
 }
 

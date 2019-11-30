@@ -84,6 +84,12 @@ function addSpecialList(group) {
     btn.innerHTML = "+";
     list.append(btn);
 
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    list.append(remove);
+
     group.append(list);
     addEntryContent(group);
 }
@@ -149,6 +155,12 @@ function addSpecialTable(group) {
     tr.append(td);
     tbody.append(tr);
     table.append(tbody);
+
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    table.append(remove);
 
     group.append(table);
     addEntryContent(group);
@@ -217,6 +229,12 @@ function addSpecialImage(group) {
     img.setAttribute("ondblclick", "changeImage(event)");
 
     outer.append(img);
+
+    var remove = document.createElement("button");
+    remove.innerText = "移除 Remove";
+    remove.classList.add("remove-btn");
+    remove.setAttribute("onclick", "removeElement(event)");
+    outer.append(remove);
 
     group.append(outer);
     addEntryContent(group);
