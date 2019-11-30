@@ -78,3 +78,4 @@ function addRecordPlan() {
     var youngBro = document.getElementById("plan-add");
     parent.insertBefore(proc, youngBro);
 }
+
