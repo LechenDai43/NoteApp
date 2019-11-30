@@ -2,14 +2,25 @@ function removeElement(event) {
     var main = event.target.parentElement;
     var sebling = main.parentElement.childNodes;
     var next, before;
+    var n_txt, b_txt;
     for (var i = 1; i < sebling.length - 1; i++) {
         if (sebling[i] === main) {
             next = sebling[i + 1];
-            before = sebling[i - 1];
+            if (i === 3) {
+                before = sebling[1];
+            } else {
+                before = sebling[i - 1];
+            }
+            n_txt = next.innerText;
+            b_txt = before.innerText;
             break;
         }
     }
-    before.innerHTML += "\n" + next.innerHTML;
+    if (n_txt.length === 0 || n_txt === "请在此添加内容 Please Fill Content Here" || n_txt === "章节内容 Chapter Content") {
+        before.innerText = b_txt;
+    } else {
+        before.innerText = b_txt + n_txt;
+    }
     var parent = main.parentElement;
     parent.removeChild(main);
     parent.removeChild(next);
