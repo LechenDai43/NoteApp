@@ -17,13 +17,13 @@ function addEntrySection() {
         var tool = document.createElement("div");
         tool.classList.add("tool");
         tool.innerHTML = string[i];
-        tool.onclick = function() {addSpecialComponent(event, i)};
+        tool.setAttribute("onclick", "addSpecialComponent(event," + i + ")");
         bar.append(tool);
     }
     outer.append(bar);
 
     var inner = document.createElement("div");
-    inner.classList.add("section-container")
+    inner.classList.add("section-container");
     var content = document.createElement("p");
     content.classList.add("in-section-p");
     content.setAttribute("contenteditable", "true");
@@ -59,7 +59,6 @@ function addSpecialComponent(event, key) {
 }
 
 function addEntryContent(group) {
-    console.log("get in the function");
     var con = document.createElement("p");
     con.classList.add("in-section-p");
     con.setAttribute("contenteditable", "true");
@@ -87,4 +86,113 @@ function addSpecialList(group) {
 
     group.append(list);
     addEntryContent(group);
+}
+
+function addSpecialTable(group) {
+    var table = document.createElement("table");
+    table.classList.add("note-table");
+
+    var thead = document.createElement("thead");
+    var trh = document.createElement("tr");
+    trh.classList.add("note-table-head");
+    var left = document.createElement("th");
+    var lp = document.createElement("p");
+    lp.classList.add("note-table-header");
+    lp.setAttribute("contenteditable", "true");
+    lp.innerHTML = "字节 Head";
+    left.append(lp);
+
+    var right = document.createElement("th");
+    var rp = document.createElement("p");
+    rp.classList.add("note-table-header")
+    rp.setAttribute("contenteditable", "true");
+    rp.innerHTML = "字节 Head";
+    right.append(rp);
+
+    var addCol = document.createElement("th");
+    var btnCol = document.createElement("button");
+    btnCol.classList.add("add-button");
+    btnCol.classList.add("table-column-add");
+    btnCol.onclick = function() {addColumn(event)};
+    btnCol.innerHTML = "+";
+    addCol.append(btnCol);
+    trh.append(left);
+    trh.append(right);
+    trh.append(addCol);
+    thead.append(trh);
+    table.append(thead);
+
+    var tbody = document.createElement("tbody");
+    for (var i = 0; i < 2; i++) {
+        var row = document.createElement("tr");
+        row.classList.add("note-table-body");
+        for (var j = 0; j < 2; j++) {
+            var cell = document.createElement("td");
+            var p = document.createElement("p");
+            p.classList.add("note-table-cells");
+            p.setAttribute("contenteditable", "true");
+            p.innerHTML = "内容 Content";
+            cell.append(p);
+            row.append(cell);
+        }
+        tbody.append(row);
+    }
+    var btnRow = document.createElement("button");
+    btnRow.classList.add("add-button");
+    btnRow.classList.add("table-row-add");
+    btnRow.onclick = function() {addRow(event)};
+    btnRow.innerHTML = "+";
+    var tr = document.createElement("tr");
+    tr.classList.add("table-note-btn-row");
+    var td = document.createElement("td");
+    td.append(btnRow);
+    tr.append(td);
+    tbody.append(tr);
+    table.append(tbody);
+
+    group.append(table);
+    addEntryContent(group);
+}
+
+function addSpecialImage(group) {
+    var outer = document.createElement("div");
+    outer.classList.add("entry-outer-image");
+
+    var input = document.createElement("input");
+    input.setAttribute("type","file");
+    input.setAttribute("oninput", "inputImage(event)");
+    input.setAttribute("accept", "image/png, .jpeg, .jpg");
+
+    outer.append(input);
+
+    var img = document.createElement("img");
+    img.setAttribute("style", "display:none;");
+    img.setAttribute("ondblclick", "changeImage(event)");
+
+    outer.append(img);
+
+    group.append(outer);
+    addEntryContent(group);
+}
+
+var gimg;
+
+function inputImage(event) {
+    var value = event.target.value;
+    if (value.search(/(png|jpeg|jpg)/i) > 1) {
+        var img = event.target.parentElement.childNodes[1];
+        gimg = img;
+        var fReader = new FileReader();
+        fReader.readAsDataURL(event.target.files[0]);
+        fReader.onloadend = function (event) {
+            gimg.src = event.target.result;
+            gimg.setAttribute("style", "display:show;");
+            gimg.setAttribute("width", "500px");
+        };
+        event.target.setAttribute("style", "display:none;");
+    }
+}
+
+function changeImage(event) {
+    event.target.parentElement.childNodes[0].setAttribute("style", "display:show;");
 }
