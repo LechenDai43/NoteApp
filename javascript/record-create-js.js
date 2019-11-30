@@ -47,6 +47,7 @@ function addRecordPlan() {
     proc.append(top);
 
     var mid = document.createElement("table");
+    mid.classList.add("try-detail");
     var tr = document.createElement("tr");
     var left = document.createElement("td");
     var lp = document.createElement("p");

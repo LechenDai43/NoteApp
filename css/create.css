@@ -190,6 +190,7 @@ h3 {
     border-bottom: 2px double darkgray;
     border-left: 1px solid lightgray;
     margin-bottom: 15px;
+    text-indent: 2em;
 }
 
 <!-- end for note-create.php -->
@@ -209,4 +210,59 @@ h3 {
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
 }
+
+.in-section-p {
+    text-indent: 2em;
+}
+
+.introduction-p {
+    text-indent: 2em;
+}
 <!-- end for entry-create.php -->
+
+<!-- css for record-create.php -->
+
+.non-class {}
+
+.try-detail {
+    margin-left: 20px;
+    padding: 5px;
+    border: 1px dashed black;
+    width: 100%;
+}
+
+.an-implement {
+    margin-right: 5px;
+    border-bottom: 1px dashed gray;
+    height: 100px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+.a-review {
+    margin-left: 5px;
+    border-bottom: 1px dashed gray;
+    height: 100px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+.record-summary {
+    text-indent: 2em;
+}
+
+.description-container p {
+    text-indent: 2em;
+}
+
+.a-process {
+    margin-left: 5%;
+    border-left: 2px double black;
+}
+
+.plan-content {
+    margin-left: 15px;
+    padding: 5px;
+    text-indent: 2em;
+}
+<!-- end for record-create.php -->

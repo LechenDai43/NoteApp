@@ -16,6 +16,7 @@ Classes:
     plan-content                        paragraphs to store the content of plans
     proc-#-imp                          implementations for process #
     proc-#-rev                          reviews for process #
+    try-detail                          table for implementations of a plan
 Functions:
      addRecordImplement(event)          add a new implementation for the plan
      addRecordPlan()                    add a new plan for the task
@@ -41,7 +42,7 @@ Functions:
                         <h3>计划-Plan</h3>
                         <p contenteditable="true" class="plan-content">计划内容 Plan Details</p>
                     </div>
-                    <table>
+                    <table class="try-detail">
                         <tr>
                             <td><p contenteditable="true" class="proc-1-imp an-implement">实施情况 Implement Detail</p></td>
                             <td><p contenteditable="true" class="proc-1-rev a-review">反思 Review</p></td>

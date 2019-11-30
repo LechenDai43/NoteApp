@@ -13,6 +13,7 @@ Classes:
     in-section-p                          ps for the content of a single section
     reference-container                   divs to contains all information about reference
     entry-ref-list                        order lists for the references of an entry
+    introduction-p                        paragraph for introduction
 Functions:
     addSpecialComponent(event, int)       add a special component to a section according to the int parameter
     addEntrySection()                     add a new section after the last one
@@ -31,7 +32,7 @@ Functions:
             <?php include_once 'common-create.php'; ?>
             <div class="introduction-container">
                 <h3>简介-Introduction</h3>
-                <p contenteditable="true">填写简介 Fill Introduction Here</p>
+                <p contenteditable="true" class="introduction-p">填写简介 Fill Introduction Here</p>
             </div>
             <div class="all-sections">
                 <div class="a-group">
