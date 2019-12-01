@@ -295,7 +295,7 @@ function createEntry() {
     }
 
 
-    js['type'] = "entry";
+    js['type'] = 'entry';
 
     var introduction = document.getElementsByClassName("introduction-p")[0].innerHTML;
     introduction = introduction.trimLeft().trimRight();

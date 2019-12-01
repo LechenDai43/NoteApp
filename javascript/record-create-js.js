@@ -92,7 +92,7 @@ function createRecord() {
     if (!js) {
         return;
     }
-    js['type'] = "record";
+    js['type'] = 'record';
 
     var descp = document.getElementsByClassName("description-container")[0].childNodes;
     var desc = false;

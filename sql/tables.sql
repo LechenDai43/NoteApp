@@ -11,6 +11,7 @@ create table if not exists articles (
     class enum('note', 'record', 'entry') not null,
     primary key (id)
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
+alter table articles add constraint articles_key1 unique (title, class);
 
 create table if not exists tags (
     id int not null,
@@ -34,7 +35,7 @@ alter table notes add constraint notes_key3 foreign key (id) references articles
 
 create table if not exists note_comments (
     note_id int not null,
-    comment text not null
+    comment text CHARACTER SET utf8 COLLATE utf8_general_ci not null not null
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 alter table note_comments add constraint note_comments_key1 foreign key (note_id) references notes(note_id);
 
@@ -43,6 +44,7 @@ create table if not exists note_cues (
     cue varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci not null
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 alter table note_cues add constraint note_cues_key1 foreign key (note_id) references notes(note_id);
+alter table note_cues add constraint note_cues_key2 unique (note_id, cue);
 -- end -----------------------------------------------------------------------------------------------------------------
 
 -- tables about task records -------------------------------------------------------------------------------------------

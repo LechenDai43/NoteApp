@@ -378,7 +378,7 @@ function createNote() {
         return;
     }
 
-    js['type'] = "note";
+    js['type'] = 'note';
 
     var cues = document.getElementsByClassName("cue-content");
     var cue_arr = [];
@@ -466,7 +466,7 @@ function createNote() {
         data: {'js': JSON.stringify(js)},
         type: 'POST',
         success: function (response) {
-            alert(response);
+            document.getElementsByTagName("body")[0].innerHTML = response;
         }     
     });
 }
