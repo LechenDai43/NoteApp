@@ -356,7 +356,7 @@ function packSubSection(element) {
         alert("Please fill in unit title.");
         return false;
     }
-    var result = [];
+    var result = {};
     result['title'] = title;
 
     var content = [];
@@ -415,7 +415,7 @@ function packEntryParagraph(element) {
         alert("Please fill in content.");
         return false;
     }
-    var result = [];
+    var result = {};
     result['type'] = 'paragraph';
     result['content'] = content;
     return result;
@@ -440,7 +440,7 @@ function packEntryTable(element) {
     var tbody = element.childNodes[1].childNodes;
     var table = [];
     for (var i = 0; i < tbody.length - 1; i++) {
-        var row = [];
+        var row = {};
         var eles = tbody[i].childNodes;
         var count = 0;
         for (var j = 0; j < len; j++) {
@@ -461,7 +461,7 @@ function packEntryTable(element) {
         alert("Please fill some data into the table.");
         return false;
     }
-    var result = [];
+    var result = {};
     result['type'] = "table";
     result['head'] = head;
     result['table'] = table;
@@ -485,14 +485,14 @@ function packEntryList(element) {
         alert("Please add at least on item in the list.")
         return false;
     }
-    var result = [];
+    var result = {};
     result['type'] = 'list';
     result['content'] = item;
     return result;
 }
 
 function packEntryImage(element) {
-    var result = [];
+    var result = {};
     result['type'] = "image";
 
     var image = element.childNodes[1].getAttribute("src");

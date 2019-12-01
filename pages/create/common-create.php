@@ -15,3 +15,4 @@ Classes:
 <div class="tag-field" contenteditable="true">
     在这里添加标签 Add Tag Here
 </div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>

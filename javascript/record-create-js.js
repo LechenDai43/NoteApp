@@ -119,7 +119,7 @@ function createRecord() {
     }
     var content = [];
     for (var i = 0; i < plans.length; i++) {
-        var one = [];
+        var one = {};
         var plan = packRecordPlan(plans[i]);
         if (!plan) {
             return;
@@ -187,7 +187,7 @@ function packRecordTries(element) {
 
 function packRecordImplementation(element) {
     var children = element.childNodes;
-    var result = [];
+    var result = {};
     var key = 0;
     for (var i = 0; i < children.length; i++) {
         if (children[i].nodeName === "TD") {

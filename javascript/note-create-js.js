@@ -461,7 +461,14 @@ function createNote() {
     }
     js['comment'] = comment;
 
-
+    $.ajax({
+        url: '../../backend/note-create-php.php',
+        data: {'js': JSON.stringify(js)},
+        type: 'POST',
+        success: function (response) {
+            alert(response);
+        }     
+    });
 }
 
 function packNoteContent(element) {
@@ -471,7 +478,7 @@ function packNoteContent(element) {
         alert("Please fill in content.");
         return false;
     }
-    var result = [];
+    var result = {};
     result['type'] = 'paragraph';
     result['content'] = content;
     return result;
@@ -494,7 +501,7 @@ function packNoteList(element) {
         alert("Please add at least on item in the list.")
         return false;
     }
-    var result = [];
+    var result = {};
     result['type'] = 'list';
     result['content'] = item;
     return result;
@@ -519,7 +526,7 @@ function packNoteTable(element) {
     var tbody = element.childNodes[1].childNodes;
     var table = [];
     for (var i = 0; i < tbody.length - 1; i++) {
-        var row = [];
+        var row = {};
         var eles = tbody[i].childNodes;
         var count = 0;
         for (var j = 0; j < len; j++) {
@@ -540,7 +547,7 @@ function packNoteTable(element) {
         alert("Please fill some data into the table.");
         return false;
     }
-    var result = [];
+    var result = {};
     result['type'] = "table";
     result['head'] = head;
     result['table'] = table;
@@ -548,7 +555,7 @@ function packNoteTable(element) {
 }
 
 function packNoteMatrix(element) {
-    var x = [], y = [];
+    var x = {}, y = {};
 
     var value = element.childNodes[0].innerHTML;
     value = value.trimRight().trimLeft();
@@ -580,7 +587,7 @@ function packNoteMatrix(element) {
     }
     y['negative'] = value;
 
-    var box = [];
+    var box = {};
     var count = 0;
     value = element.childNodes[1].childNodes[1].childNodes[0].innerText;
     value = value.trimRight().trimLeft();
@@ -620,7 +627,7 @@ function packNoteMatrix(element) {
         return false;
     }
 
-    var result = [];
+    var result = {};
     result['type'] = "matrix";
     result["x"] = x;
     result["y"] = y;
@@ -630,7 +637,7 @@ function packNoteMatrix(element) {
 
 function packNoteProcess(element) {
     var prs = element.childNodes[1].childNodes;
-    var result = [];
+    var result = {};
     var content = [];
     for (var i = 0; i < prs.length; i++) {
         if (prs[i].classList.contains("note-process-single-process")) {

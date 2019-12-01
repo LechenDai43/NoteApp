@@ -30,7 +30,7 @@ function removeElement(event) {
 function checkCommon() {
     var title = document.getElementsByClassName("title-field")[0].innerHTML;
     title = title.trimRight().trimLeft();
-    if (title.length < 1) {
+    if (title.length < 1 || title === "在这里填写标题 Fill Title Here") {
         alert("Please fill in the title.")
         return false;
     }
@@ -40,7 +40,7 @@ function checkCommon() {
         alert("Please fill in at least one tag.")
         return false;
     }
-    var js = [];
+    var js = {};
     js["title"] = title;
     js['tag'] = valid_tag;
     return js;
