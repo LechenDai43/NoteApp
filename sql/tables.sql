@@ -34,14 +34,18 @@ alter table notes add constraint notes_key2 unique (summary);
 alter table notes add constraint notes_key3 foreign key (id) references articles(id);
 
 create table if not exists note_comments (
+    comment_id int not null auto_increment,
     note_id int not null,
-    comment text CHARACTER SET utf8 COLLATE utf8_general_ci not null not null
+    comment text CHARACTER SET utf8 COLLATE utf8_general_ci not null not null,
+    primary key (comment_id)
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 alter table note_comments add constraint note_comments_key1 foreign key (note_id) references notes(note_id);
 
 create table if not exists note_cues (
+    cue_id int not null auto_increment,
     note_id int not null,
-    cue varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci not null
+    cue varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci not null,
+    primary key (cue_id)
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 alter table note_cues add constraint note_cues_key1 foreign key (note_id) references notes(note_id);
 alter table note_cues add constraint note_cues_key2 unique (note_id, cue);

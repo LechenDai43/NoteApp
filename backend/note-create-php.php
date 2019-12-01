@@ -21,6 +21,6 @@ if (isset($_POST['js'])) {
     }
     $note_id = mysqli_insert_id($mysqli);
 
-
+    $comments = $note->{'comment'};
 
 }
