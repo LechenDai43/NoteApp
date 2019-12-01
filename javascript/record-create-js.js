@@ -141,6 +141,8 @@ function createRecord() {
         return;
     }
     js['summary'] = sum;
+
+    console.log(js);
 }
 
 function packRecordPlan(element) {
@@ -190,16 +192,16 @@ function packRecordImplementation(element) {
     for (var i = 0; i < children.length; i++) {
         if (children[i].nodeName === "TD") {
             if (key === 0) {
-                var value = children[i].innerHTML;
+                var value = children[i].innerText;
                 value = value.trimLeft().trimRight();
                 if (value.length === 0 || value === "实施情况 Implement Detail") {
                     alert("Please fill in your implementation.");
                     return false;
                 }
                 key = 1;
-                result['implementation'] = value;
+                result['try'] = value;
             } else {
-                var value = children[i].innerHTML;
+                var value = children[i].innerText;
                 value = value.trimLeft().trimRight();
                 if (value.length === 0 || value === "反思 Review") {
                     alert("Please fill in your review on your implementation.");
