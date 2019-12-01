@@ -378,6 +378,8 @@ function createNote() {
         return;
     }
 
+    js['type'] = "note";
+
     var cues = document.getElementsByClassName("cue-content");
     var cue_arr = [];
     for (var i = 0; i < cues.length; i++) {

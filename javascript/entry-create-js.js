@@ -272,6 +272,13 @@ function addEntryListItem(event) {
     list.insertBefore(li, youngBro);
 }
 
+/*
+    Below is the code for the followings:
+    1. checking validation of inputs;
+    2. making inputs into json;
+    3. send inputs-json to backend.
+ */
+
 function createEntry() {
     var js = checkCommon();
     if (!js) {
@@ -279,4 +286,197 @@ function createEntry() {
     }
 
 
+    js['type'] = "entry";
+
+    var introduction = document.getElementsByClassName("introduction-p")[0].innerHTML;
+    introduction = introduction.trimLeft().trimRight();
+    if (introduction.length === 0 || introduction === "填写简介 Fill Introduction Here") {
+        alert("Please fill in the introduction.");
+        return;
+    }
+    js['introduction'] = introduction;
+
+    var subsecs = document.getElementsByClassName("a-group");
+    var subsections = [];
+    for (var i = 0; i < subsecs.length; i++) {
+        var subsec = packSubSection(subsecs[i]);
+        if (!subsec) {
+            return;
+        }
+        subsections.push(subsec);
+    }
+    if (subsections.length === 0) {
+        alert("Please fill in at least one subsection.");
+        return;
+    }
+    js['content'] = subsections;
+
+    var refs = document.getElementsByClassName("entry-ref-list")[0].childNodes;
+    var refrences = [];
+    var count = 0;
+    for (var i = 0; i < refs.length; i++) {
+        if (refs[i].tagName === "LI") {
+            var value = refs[i].innerHTML;
+            value = value.trimRight().trimLeft();
+            if (value.length === 0 || value === "来源 Recourse") {
+                continue;
+            }
+            count++;
+            refrences.push(value);
+        }
+    }
+    if (count === 0) {
+        alert("Please have at least one reference.");
+        return;
+    }
+    js["reference"] = refrences;
+
+}
+
+function packSubSection(element) {
+    var title = element.childNodes[0].innerText;
+    title = title.trimLeft().trimRight();
+    if (title.length === 0 || title === "小标题 Unit Title") {
+        alert("Please fill in unit title.");
+        return false;
+    }
+    var result = [];
+    result['title'] = title;
+
+    var content = [];
+    var contents = element.childNodes[3].childNodes;
+    for (var i = 0; i < contents.length; i++) {
+        var components = contents[i];
+        var component;
+        if (components.classList.contains("in-section-p")) {
+            component = packEntryParagraph(components);
+            if (!component) {
+                return false;
+            }
+        } else if (components.classList.contains("entry-table")) {
+            component = packEntryTable(components);
+            if (!component) {
+                return false;
+            }
+        } else if (components.classList.contains("entry-list")) {
+            component = packEntryList(components);
+            if (!component) {
+                return false;
+            }
+        } else if (components.classList.contains("entry-outer-image")) {
+            component = packEntryImage(components);
+            if (!component) {
+                return false;
+            }
+        } else if (component.tagName === "TEXT") {
+            continue;
+        } else {
+            alert("Unidentified element.");
+            return false;
+        }
+        content.push(component);
+    }
+    if (content.length === 0) {
+        alert("Please at least have one content.");
+        return false;
+    }
+
+    result['content'] = content;
+    return result;
+}
+
+function packEntryParagraph(element) {
+    var content = element.innerHTML;
+    content = content.trimLeft().trimRight();
+    if (content.length === 0 || content === "章节内容 Chapter Content") {
+        alert("Please fill in content.");
+        return false;
+    }
+    var result = [];
+    result['type'] = 'paragraph';
+    result['content'] = content;
+    return result;
+}
+
+function packEntryTable(element) {
+    var head = [], len = 0;
+    var thead = element.childNodes[0].childNodes[0].childNodes;
+    for (var i = 0; i < thead.length - 1; i++) {
+        var value = thead[i].childNodes[0].innerText;
+        value = value.trimLeft().trimRight();
+        if (value.length < 1 || value === "字节 Head") {
+            break;
+        }
+        head.push(value);
+        len++;
+    }
+    if (len === 0) {
+        alert("There is no valid table head.");
+        return false;
+    }
+    var tbody = element.childNodes[1].childNodes;
+    var table = [];
+    for (var i = 0; i < tbody.length - 1; i++) {
+        var row = [];
+        var eles = tbody[i].childNodes;
+        var count = 0;
+        for (var j = 0; j < len; j++) {
+            var value = eles[j].innerText;
+            value = value.trimLeft().trimRight();
+            if (value.length === 0 || value === "内容 Content") {
+                row[head[j]] = "N/A";
+            } else {
+                row[head[j]] = value;
+                count++;
+            }
+        }
+        if (count > 0) {
+            table.push(row);
+        }
+    }
+    if (table.length < 1) {
+        alert("Please fill some data into the table.");
+        return false;
+    }
+    var result = [];
+    result['type'] = "table";
+    result['head'] = head;
+    result['table'] = table;
+    return result;
+}
+
+function packEntryList(element) {
+    var items = element.childNodes;
+    var item = [];
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].classList.contains("note-list-item")) {
+            var value = items[i].innerHTML;
+            value = value.trimRight().trimLeft();
+            if (value.length === 0 || value === "内容 Content") {
+                continue;
+            }
+            item.push(value);
+        }
+    }
+    if (item.length === 0) {
+        alert("Please add at least on item in the list.")
+        return false;
+    }
+    var result = [];
+    result['type'] = 'list';
+    result['content'] = item;
+    return result;
+}
+
+function packEntryImage(element) {
+    var result = [];
+    result['type'] = "image";
+
+    var image = element.childNodes[1].getAttribute("src");
+    if (element.childNodes[1].getAttribute("style") === "display:none;" || image.length === 0) {
+        alert("Please upload an image.");
+        return false;
+    }
+    result["image"] = image;
+    return result;
 }
