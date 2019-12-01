@@ -142,7 +142,7 @@ function createRecord() {
     }
     js['summary'] = sum;
 
-    console.log(js);
+
 }
 
 function packRecordPlan(element) {

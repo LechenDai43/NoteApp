@@ -461,7 +461,7 @@ function createNote() {
     }
     js['comment'] = comment;
 
-    console.log(js);
+
 }
 
 function packNoteContent(element) {

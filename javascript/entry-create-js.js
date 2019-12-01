@@ -339,6 +339,8 @@ function createEntry() {
         return;
     }
     js["reference"] = refrences;
+
+
 }
 
 function packSubSection(element) {
