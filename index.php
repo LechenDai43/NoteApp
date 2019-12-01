@@ -25,7 +25,7 @@ classes:
         <main id="index-main">
             <h1 id="main-logo">Note App</h1>
             <div id="out-form">
-                <form method="get" action="search/simple-search.php" id="main-search-form">
+                <form method="get" action="backend/search/simple-search.php" id="main-search-form">
                     <input type="search" name="simple-key" class="text-field"/>
                     <input type="submit" name="submit" class="submit" value="Search"/>
                 </form>
