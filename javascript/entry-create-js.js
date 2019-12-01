@@ -41,12 +41,21 @@ function addEntrySection() {
 function addEntryReference() {
     var newItem = document.createElement("li");
     newItem.innerHTML = "来源 Recourse";
+    newItem.setAttribute("contenteditable", "true");
     var parent = document.getElementsByClassName("entry-ref-list")[0];
     parent.append(newItem);
 }
 
 function addSpecialComponent(event, key) {
-    var group = event.target.parentElement.parentElement.childNodes[7];
+    var group;
+    var groups = event.target.parentElement.parentElement.childNodes;
+    for (var i = 0; i < groups.length; i++) {
+        var ele = groups[i];
+        if (ele.nodeName !== "#text" && ele.classList.contains("section-container")) {
+            group = groups[i];
+            break;
+        }
+    }
     switch (key) {
         case 0:
             addSpecialList(group);
@@ -330,11 +339,16 @@ function createEntry() {
         return;
     }
     js["reference"] = refrences;
-
 }
 
 function packSubSection(element) {
-    var title = element.childNodes[0].innerText;
+    var title = "";
+    for (var i = 0; i < element.childNodes.length; i++) {
+        if (element.childNodes[i].nodeName === "H3") {
+            title = element.childNodes[i].innerHTML;
+            break;
+        }
+    }
     title = title.trimLeft().trimRight();
     if (title.length === 0 || title === "小标题 Unit Title") {
         alert("Please fill in unit title.");
@@ -344,16 +358,19 @@ function packSubSection(element) {
     result['title'] = title;
 
     var content = [];
-    var contents = element.childNodes[3].childNodes;
+    var contents;
+    for (var i = 0; i < element.childNodes.length; i++) {
+        if (element.childNodes[i].nodeName === "DIV" && element.childNodes[i].classList.contains("section-container")) {
+            contents = element.childNodes[i].childNodes;
+            break;
+        }
+    }
     for (var i = 0; i < contents.length; i++) {
         var components = contents[i];
         var component;
-        if (components.classList.contains("in-section-p")) {
-            component = packEntryParagraph(components);
-            if (!component) {
-                return false;
-            }
-        } else if (components.classList.contains("entry-table")) {
+        if (components.nodeName === "#text") {
+            continue;
+        }else if (components.classList.contains("entry-table")) {
             component = packEntryTable(components);
             if (!component) {
                 return false;
@@ -368,10 +385,14 @@ function packSubSection(element) {
             if (!component) {
                 return false;
             }
-        } else if (component.tagName === "TEXT") {
-            continue;
+        } else if (components.classList.contains("in-section-p")) {
+            component = packEntryParagraph(components);
+            if (!component) {
+                return false;
+            }
         } else {
             alert("Unidentified element.");
+            console.log(components);
             return false;
         }
         content.push(component);
@@ -449,7 +470,7 @@ function packEntryList(element) {
     var items = element.childNodes;
     var item = [];
     for (var i = 0; i < items.length; i++) {
-        if (items[i].classList.contains("note-list-item")) {
+        if (items[i].classList.contains("entry-list-item")) {
             var value = items[i].innerHTML;
             value = value.trimRight().trimLeft();
             if (value.length === 0 || value === "内容 Content") {

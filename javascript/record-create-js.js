@@ -85,4 +85,7 @@ function createRecord() {
     if (!js) {
         return;
     }
+    js['type'] = "record";
+
+
 }
