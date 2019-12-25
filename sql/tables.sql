@@ -14,14 +14,26 @@ create table if not exists articles (
 alter table articles add constraint articles_key1 unique (title, class);
 
 create table if not exists tags (
-    id int not null,
-    tag varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci not null
+    tag_id int not null auto_increment,
+    tag varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci not null,
+    primary key (id)
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
-alter table tags add constraint tags_key1 unique (id, tag);
-alter table tags add constraint tags_key2 foreign key (id) references articles(id);
+alter table tags add constraint tags_key1 unique (tag);
+
+create table if not exists tag_ref (
+    tag_id int not null,
+    artcle_id int not null,
+) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
+alter table tag_ref add constraint tag_ref_key1 unique (tag_id, artcle_id);
+alter table tag_ref add constraint tag_ref_key2 foreign key (article_id) references articles(id);
+alter table tag_ref add constraint tag_ref_key3 foreign key (tag_id) references tags(tag_id);
 -- end -----------------------------------------------------------------------------------------------------------------
 
 -- tables about notes --------------------------------------------------------------------------------------------------
+-- each note has 1 + 1+ n files
+-- one content file
+-- one summary file
+-- n comment files
 create table if not exists notes (
     note_id int not null auto_increment,
     id int not null,
@@ -43,15 +55,26 @@ alter table note_comments add constraint note_comments_key1 foreign key (note_id
 
 create table if not exists note_cues (
     cue_id int not null auto_increment,
-    note_id int not null,
     cue varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci not null,
     primary key (cue_id)
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
-alter table note_cues add constraint note_cues_key1 foreign key (note_id) references notes(note_id);
-alter table note_cues add constraint note_cues_key2 unique (note_id, cue);
+alter table note_cues add constraint note_cues_key1 unique (cue);
+
+create table if not exists cue_ref (
+    cue_id int not null,
+    note_id int not null
+) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
+alter table cue_ref add constraint cue_ref_key1 unique (cue_id, note_id);
+alter table cue_ref add constraint cue_ref_key2 foreign key (note_id) references notes(note_id);
+alter table cue_ref add constraint cue_ref_key3 foreign key (cue_id) references note_cues(cue_id);
+
 -- end -----------------------------------------------------------------------------------------------------------------
 
 -- tables about task records -------------------------------------------------------------------------------------------
+-- each record has 1 + n + 1 files
+-- one detail file
+-- n plans files
+-- one summary file
 create table if not exists records (
     record_id int not null auto_increment,
     id int not null,
@@ -74,6 +97,9 @@ alter table record_thoughts add constraint record_thoughts_key2 unique (thought)
 -- end -----------------------------------------------------------------------------------------------------------------
 
 -- tables about wiki entries -------------------------------------------------------------------------------------------
+-- each entry has 1 + n files
+-- one introduction file
+-- n subsection files
 create table if not exists entries (
     entry_id int not null auto_increment,
     id int not null,

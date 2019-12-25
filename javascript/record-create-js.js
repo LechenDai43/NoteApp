@@ -26,7 +26,29 @@ function addRecordImplement(event) {
 
     tr.append(left);
     tr.append(right);
+
+    var b = document.createElement("td");
+    b.classList.add("del-col");
+    var dbtn = document.createElement("button");
+    dbtn.innerHTML = "删除 delete";
+    dbtn.setAttribute("onclick", "deleteRecordImplement(event)");
+    dbtn.classList.add("delete-button");
+    b.append(dbtn);
+    tr.append(b);
+
     table.append(tr);
+}
+
+function deleteRecordImplement(event) {
+    var node = event.target.parentElement.parentElement;
+    var parent = node.parentElement;
+    parent.removeChild(node);
+}
+
+function deletePlan(event) {
+    var node = event.target.parentElement;
+    var parent = node.parentElement;
+    parent.removeChild(node);
 }
 
 function addRecordPlan() {
@@ -74,6 +96,13 @@ function addRecordPlan() {
     btn.innerHTML = "添加 Add";
     btn.onclick = function() {addRecordImplement(event)};
     proc.append(btn);
+
+    var del = document.createElement("button");
+    del.classList.add("delete-button");
+    del.id = "plan-delete".concat("-", proc.id);
+    del.innerHTML = "删除 delete";
+    del.onclick = function() {deletePlan(event)};
+    proc.append(del);
 
     var parent = document.getElementsByClassName("processes-container")[0];
     var youngBro = document.getElementById("plan-add");

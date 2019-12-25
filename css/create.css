@@ -257,6 +257,10 @@ h3 {
 
 .non-class {}
 
+.del-col {
+    width: 8%;
+}
+
 .try-detail {
     margin-left: 20px;
     padding: 5px;
