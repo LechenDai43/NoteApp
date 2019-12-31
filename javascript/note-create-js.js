@@ -466,7 +466,7 @@ function createNote() {
         data: {'js': JSON.stringify(js), 'str_content': JSON.stringify(js['content'])},
         type: 'POST',
         success: function (response) {
-            document.getElementsByTagName("body")[0].innerHTML = response;
+            alert(response);
         }     
     });
 }
