@@ -40,4 +40,5 @@ foreach ($tag as $value) {
 }
 
 $format_directory = $directory.$id;
-echo "so far so good";
+$files = [];
+//echo "so far so good";

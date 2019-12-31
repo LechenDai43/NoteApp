@@ -3,37 +3,69 @@ if (isset($_POST['js'])) {
     include_once 'mysql-connection.php';
     include_once 'saving-common.php';
 
+    $directory_index = 0;
     $content = $note->{'content'};
-    $content_copy = [];
-    for ($i = 0; $i < count($content); $i++) {
-        array_push($content_copy, $content[$i]);
-        $sub_content_directory = $format_directory."_".$i."_subnotecontent.json";
-        $sub_file = fopen($sub_content_directory, 'w');
-        fwrite($sub_file, json_encode($content_copy[$i]->{'content'}));
-        fclose($sub_file);
-        $content_copy[$i]->{'content'} = $sub_content_directory;
-    }
-    $v1 = $format_directory."_notecontent.json";
-    $content_file = fopen($v1, 'w');
-    fwrite($content_file, json_encode($content_copy));
-    fclose($content_file);
-
-
+    $content_directory = $format_directory."-".$directory_index.".json";
+    array_push($files, $content_directory);
+    $v1 = $content_directory;
+    $directory_index++;
     $summary = $note->{'summary'};
-    $v2 = $format_directory."_notesummary.json";
-    $summary_file = fopen($v2, 'w');
-    fwrite($summary_file, json_encode($summary));
-    fclose($summary_file);
+    $summary_directory = $format_directory."-".$directory_index.".json";
+    array_push($files, $summary_directory);
+    $v2 = $summary_directory;
+    $directory_index++;
 
-
-    $statement = "insert into notes (id, note, summary) value (".$id.",\"".$v1."\",\"".$v2."\")";
+    $statement = "insert into notes(id, note, summary) value(".$id.",\"".$content_directory."\",\"".$summary_directory."\")";
     $outcome = mysqli_query($mysqli, $statement);
     if ($outcome != true) {
         echo mysqli_error($mysqli);
+        $statement = "delete from articles where id = ".$id;
+        $outcome = mysqli_query($mysqli, $statement);
         return;
     }
     $note_id = mysqli_insert_id($mysqli);
 
+    $content_file = fopen($content_directory, 'w');
+
+    fwrite($content_file, $_POST['js']);
+    fclose($content_file);
+    $summary_file = fopen($summary_directory, 'w');
+    fwrite($summary_file, $summary);
+    fclose($summary_file);
+
     $comments = $note->{'comment'};
+    foreach ($comments as $value) {
+        $comment_directory = $format_directory."-".$directory_index.".json";
+        $v3 = $comment_directory;
+        $statement = "insert into note_comments(note_id, comment) value(".$note_id.",\"".$v3."\")";
+        $outcome = mysqli_query($mysqli, $statement);
+        if ($outcome != true) {
+            continue;
+        }
+        array_push($files, $comment_directory);
+        $directory_index++;
+        $comment_file = fopen($comment_directory, 'w');
+        fwrite($comment_file, $value);
+        fclose($comment_file);
+    }
+
+    $cue = $note->{'cue'};
+    foreach ($cue as $value) {
+        $cue_id = -1;
+        $statement = "select cue_id from note_cues where cue = \"".$value."\"";
+        $outcome = mysqli_query($mysqli, $statement);
+        if ($outcome->num_rows == 0) {
+            $statement = "insert into note_cues(cue) value (\"".$value."\")";
+            $outcome = mysqli_query($mysqli, $statement);
+            $cue_id = mysqli_insert_id($mysqli);
+        } else {
+            $row = mysqli_fetch_row($outcome);
+            $cue_id = $row[0];
+        }
+        $statement = "insert into cue_ref(cue_id, note_id) value(".$cue_id.",".$note_id.")";
+        $outcome = mysqli_query($mysqli, $statement);
+    }
+
+    //echo "All done";
 
 }

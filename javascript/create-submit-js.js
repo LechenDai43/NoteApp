@@ -52,7 +52,7 @@ function tagToJson(tags) {
     tags = tags.trimRight();
     var arr = [];
     var i = tags.search(";");
-    console.log("标签的loop前");
+    //console.log("标签的loop前");
     while (i > -1) {
         var tem = tags.substring(0, i);
         tem = tem.trimLeft();
@@ -63,7 +63,7 @@ function tagToJson(tags) {
         tags = tags.substring(i + 1);
         i = tags.search(";");
     }
-    console.log("标签的loop后");
+    //console.log("标签的loop后");
     if (tags.length > 0) {
         arr.push(tags);
     }
