@@ -498,7 +498,7 @@ function packNoteList(element) {
         }
     }
     if (item.length === 0) {
-        alert("Please add at least on item in the list.")
+        alert("Please add at least on item in the list.");
         return false;
     }
     var result = {};

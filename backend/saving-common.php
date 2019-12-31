@@ -20,7 +20,18 @@ $id = mysqli_insert_id($mysqli);
 
 $tag = $note->{'tag'};
 foreach ($tag as $value) {
-    $statement = "insert into tags(id, tag) value($id,\"".$value."\")";
+    $tag_id = -1;
+    $statement = "select tag_id from tags where tag = \"".$value."\"";
+    $outcome = mysqli_query($mysqli, $statement);
+    if ($outcome->num_rows == 0) {
+        $statement = "insert into tags(tag) value (\"".$value."\")";
+        $outcome = mysqli_query($mysqli, $statement);
+        $tag_id = mysqli_insert_id($mysqli);
+    } else {
+        $row = mysqli_fetch_row($outcome);
+        $tag_id = $row[0];
+    }
+    $statement = "insert into tag_ref(tag_id, article_id) value(".$tag_id.",".$id.")";
     $outcome = mysqli_query($mysqli, $statement);
     if ($outcome != true) {
         echo mysqli_error($mysqli);
@@ -28,4 +39,5 @@ foreach ($tag as $value) {
     }
 }
 
-$format_directory = $directory.$type.$id;
+$format_directory = $directory.$id;
+echo "so far so good";

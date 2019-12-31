@@ -16,21 +16,21 @@ alter table articles add constraint articles_key1 unique (title, class);
 create table if not exists tags (
     tag_id int not null auto_increment,
     tag varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci not null,
-    primary key (id)
+    primary key (tag_id)
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 alter table tags add constraint tags_key1 unique (tag);
 
 create table if not exists tag_ref (
     tag_id int not null,
-    artcle_id int not null,
+    article_id int not null
 ) ENGINE INNODB  CHARACTER SET utf8 COLLATE utf8_general_ci;
-alter table tag_ref add constraint tag_ref_key1 unique (tag_id, artcle_id);
+alter table tag_ref add constraint tag_ref_key1 unique (tag_id, article_id);
 alter table tag_ref add constraint tag_ref_key2 foreign key (article_id) references articles(id);
 alter table tag_ref add constraint tag_ref_key3 foreign key (tag_id) references tags(tag_id);
 -- end -----------------------------------------------------------------------------------------------------------------
 
 -- tables about notes --------------------------------------------------------------------------------------------------
--- each note has 1 + 1+ n files
+-- each note has 1 + 1 + n files
 -- one content file
 -- one summary file
 -- n comment files
