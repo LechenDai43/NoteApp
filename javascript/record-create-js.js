@@ -171,6 +171,20 @@ function createRecord() {
     }
     js['summary'] = sum;
 
+    var arr_str_p = [];
+    for (var i = 0; i < js['content'].length; i++) {
+        arr_str_p.push(JSON.stringify(js['content'][i]));
+    }
+
+    $.ajax({
+        url: '../../backend/record-create-php.php',
+        data: {'js': JSON.stringify(js), 'str_contents': arr_str_p},
+        type: 'POST',
+        success: function (response) {
+            alert(response);
+        }
+    });
+
 
 }
 

@@ -26,8 +26,7 @@ if (isset($_POST['js'])) {
     $note_id = mysqli_insert_id($mysqli);
 
     $content_file = fopen($content_directory, 'w');
-
-    fwrite($content_file, $_POST['js']);
+    fwrite($content_file, $_POST['str_content']);
     fclose($content_file);
     $summary_file = fopen($summary_directory, 'w');
     fwrite($summary_file, $summary);
