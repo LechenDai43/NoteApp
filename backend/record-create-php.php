@@ -25,10 +25,28 @@ if (isset($_POST['js'])) {
     }
     $record_id = mysqli_insert_id($mysqli);
 
-//    $content_file = fopen($content_directory, 'w');
-//    fwrite($content_file, $_POST['js']);
-//    fclose($content_file);
-//    $summary_file = fopen($summary_directory, 'w');
-//    fwrite($summary_file, $summary);
-//    fclose($summary_file);
+    $task_file = fopen($task_directory, 'w');
+    fwrite($task_file, $task);
+    fclose($task_file);
+    $summary_file = fopen($summary_directory, 'w');
+    fwrite($summary_file, $summary);
+    fclose($summary_file);
+
+    $plans = $_POST['str_contents'];
+    foreach ($plans as $value) {
+        $plan_directory = $format_directory."-".$directory_index.".json";
+        $v3 = $plan_directory;
+        $statement = "insert into record_thoughts(record_id, thought) value(".$record_id.",\"".$v3."\")";
+        $outcome = mysqli_query($mysqli, $statement);
+        if ($outcome != true) {
+            continue;
+        }
+        array_push($files, $plan_directory);
+        $directory_index++;
+        $comment_file = fopen($plan_directory, 'w');
+        fwrite($comment_file, $value);
+        fclose($comment_file);
+    }
+
+    //echo "All done";
 }
