@@ -340,6 +340,19 @@ function createEntry() {
     }
     js["reference"] = refrences;
 
+    var arr_str_ss = [];
+    for (var i = 0; i < js['content'].length; i++) {
+        arr_str_ss.push(JSON.stringify(js['content'][i]['content']));
+    }
+
+    $.ajax({
+        url: '../../backend/entry-create-php.php',
+        data: {'js': JSON.stringify(js), 'str_contents': arr_str_ss},
+        type: 'POST',
+        success: function (response) {
+            alert(response);
+        }
+    });
 
 }
 
