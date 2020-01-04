@@ -43,4 +43,6 @@ if (isset($_POST['js'])) {
     }
 
     //echo "All done";
+
+    include_once "feed_in_index.php";
 }
