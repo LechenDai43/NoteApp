@@ -12,11 +12,21 @@
                 <h3>简介-Introduction</h3>
                 <p class="introduction-p">
                     <?php
-
+                    $statement = "select introduction, entry_id from entries where id = ".$id;
+                    $outcome = mysqli_query($mysqli, $statement);
+                    $row = mysqli_fetch_row($outcome);
+                    $introduction_directory = $row[0];
+                    $entry_id = $row[1];
+                    $introduction_file = fopen($introduction_directory, 'r');
+                    while (!feof($introduction_file)) {
+                        echo fgets($introduction_file);
+                    }
+                    fclose($introduction_file);
                     ?>
                 </p>
             </div>
             <div class="all-sections">
+
                 <div class="a-group">
                     <h3 contenteditable="true">小标题 Unit Title</h3>
                     <hr/>
