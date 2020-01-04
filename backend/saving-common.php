@@ -8,6 +8,7 @@ $v4 = "";
 $v5 = "";
 $files = [];
 $id = -1;
+$format_directory = $directory . $id;
 
 
 $note = json_decode($_POST['js']);

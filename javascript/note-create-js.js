@@ -466,7 +466,24 @@ function createNote() {
         data: {'js': JSON.stringify(js), 'str_content': JSON.stringify(js['content'])},
         type: 'POST',
         success: function (response) {
-            alert(response);
+            if (response.substr(0,3) === "set") {
+                var id = Number(response.substr(4));
+                var form = document.createElement('form');
+                form.setAttribute("action","../view/note-view.php");
+                form.setAttribute("method", "POST");
+                var input = document.createElement('input');
+                input.setAttribute("type", "text");
+                input.setAttribute("name", "id");
+                input.setAttribute("value", id + "");
+                var sub = document.createElement('input');
+                sub.setAttribute("type", "submit");
+                form.append(input);
+                form.append(sub);
+                document.body.append(form);
+                form.submit();
+            } else {
+                alert(response);
+            }
         }     
     });
 }
