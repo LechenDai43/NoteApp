@@ -41,11 +41,11 @@ function createEntryParagraph($js) {
     echo "<p class = \"in-section-p\">".$js->{'content'}."</p>";
 }
 
-function createEntrySection($js) {
+function createEntrySection($js, $title) {
     echo "<div class = \"a-group\">";
-    echo "<h3>".$js->{'title'}."</h3><hr>";
+    echo "<h3>".$title."</h3><hr>";
     echo "<div class = \"section-container\">";
-    foreach ($js->{'content'} as $element) {
+    foreach ($js as $element) {
         switch ($element->{'type'}) {
             case "table":
                 createEntryTable($element);

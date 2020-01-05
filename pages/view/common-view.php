@@ -13,6 +13,7 @@
 <h3>标签-Tags</h3>
 <div class="tag-field">
     <?php
+    $id = $_POST['id'];
     $statement = "select tag_id from tag_ref where article_id = ".$id;
     $outcome = mysqli_query($mysqli, $statement);
     $row = mysqli_fetch_row($outcome);
@@ -27,6 +28,7 @@
         }
         echo $tag;
         $pos++;
+        $row = mysqli_fetch_row($outcome);
     }
     ?>
 </div>

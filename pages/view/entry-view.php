@@ -17,7 +17,7 @@
                     $row = mysqli_fetch_row($outcome);
                     $introduction_directory = $row[0];
                     $entry_id = $row[1];
-                    $introduction_file = fopen($introduction_directory, 'r');
+                    $introduction_file = fopen("../".$introduction_directory, 'r');
                     while (!feof($introduction_file)) {
                         echo fgets($introduction_file);
                     }
@@ -34,15 +34,12 @@
                 while ($row != null) {
                     $section_title = $row[0];
                     $section_directory = $row[1];
-                    $section_file = fopen($section_directory, 'r');
+                    $section_file = fopen("../".$section_directory, 'r');
                     $section_content = "";
                     while (!feof($section_file)) {
                         $section_content = $section_content.fgets($section_file);
                     }
-                    $section_json = [];
-                    $section_json->{'content'} = json_decode($section_content);
-                    $section_json->{'title'} = $section_title;
-                    createEntrySection($section_json);
+                    createEntrySection(json_decode($section_content), $section_title);
                     $row = mysqli_fetch_row($outcome);
                 }
                 ?>
@@ -56,6 +53,7 @@
                     $row = mysqli_fetch_row($outcome);
                     while ($row != null) {
                         echo "<li>".$row[0]."</li>";
+                        $row = mysqli_fetch_row($outcome);
                     }
                     ?>
                 </ol>
