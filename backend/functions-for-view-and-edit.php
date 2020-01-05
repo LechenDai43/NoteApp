@@ -40,3 +40,26 @@ function createEntryImage($js) {
 function createEntryParagraph($js) {
     echo "<p class = \"in-section-p\">".$js->{'content'}."</p>";
 }
+
+function createEntrySection($js) {
+    echo "<div class = \"a-group\">";
+    echo "<h3>".$js->{'title'}."</h3><hr>";
+    echo "<div class = \"section-container\">";
+    foreach ($js->{'content'} as $element) {
+        switch ($element->{'type'}) {
+            case "table":
+                createEntryTable($element);
+                break;
+            case "list":
+                createEntryList($element);
+                break;
+            case "image":
+                createEntryImage($element);
+                break;
+            case "paragraph":
+                createEntryParagraph($element);
+                break;
+        }
+    }
+    echo "</div></div>";
+}
