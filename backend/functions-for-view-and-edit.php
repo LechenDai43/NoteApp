@@ -23,3 +23,20 @@ function createEntryTable($js) {
     }
 }
 
+function createEntryList($js) {
+    echo "<ul class=\"in-section-p\">";
+    foreach ($js->{'content'} as $item) {
+        echo "<li class = \"entry-list-item\">".$item."</li>";
+    }
+    echo "</ul>";
+}
+
+function createEntryImage($js) {
+    echo "<div class = \"entry-outer-image\">";
+    echo "<img src = \"".$js->{'image'}."\" width = \"500px\">";
+    echo "</div>";
+}
+
+function createEntryParagraph($js) {
+    echo "<p class = \"in-section-p\">".$js->{'content'}."</p>";
+}
