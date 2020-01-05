@@ -26,24 +26,40 @@
                 </p>
             </div>
             <div class="all-sections">
-
-                <div class="a-group">
-                    <h3 contenteditable="true">小标题 Unit Title</h3>
-                    <hr/>
-                    <div class="section-container">
-                        <p class="in-section-p" contenteditable="true">章节内容 Chapter Content</p>
-                    </div>
-                </div>
-                <button class="add-button" id="entry-section-add" onclick="addEntrySection()">添加 Add</button>
+                <?php
+                include_once "../../backend/functions-for-view-and-edit.php";
+                $statement = "select sect, content from entry_sections where entry_id = ".$entry_id;
+                $outcome = mysqli_query($mysqli, $statement);
+                $row = mysqli_fetch_row($outcome);
+                while ($row != null) {
+                    $section_title = $row[0];
+                    $section_directory = $row[1];
+                    $section_file = fopen($section_directory, 'r');
+                    $section_content = "";
+                    while (!feof($section_file)) {
+                        $section_content = $section_content.fgets($section_file);
+                    }
+                    $section_json = [];
+                    $section_json->{'content'} = json_decode($section_content);
+                    $section_json->{'title'} = $section_title;
+                    createEntrySection($section_json);
+                    $row = mysqli_fetch_row($outcome);
+                }
+                ?>
             </div>
             <div class="reference-container">
                 <h4>信息来源-Reference</h4>
                 <ol class="entry-ref-list">
-                    <li contenteditable="true">来源 Recourse</li>
+                    <?php
+                    $statement = "select reference from entry_references where entry_id = ".$entry_id;
+                    $outcome = mysqli_query($mysqli, $statement);
+                    $row = mysqli_fetch_row($outcome);
+                    while ($row != null) {
+                        echo "<li>".$row[0]."</li>";
+                    }
+                    ?>
                 </ol>
-                <button class="add-button" id="entry-reference-add" onclick="addEntryReference()">添加 Add</button>
             </div>
-            <button class="submit" onclick="createEntry()">提交 Submit</button>
         </main>
         <script src="../../javascript/entry-create-js.js"></script>
         <script src="../../javascript/create-submit-js.js"></script>
