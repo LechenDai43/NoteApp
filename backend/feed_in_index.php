@@ -40,4 +40,5 @@ if ($error == -1) {
             }
         }
     }
+    mysqli_close($mysqli);
 }

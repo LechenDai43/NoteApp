@@ -24,6 +24,7 @@ if (isset($_POST['js'])) {
             $error = $e;
             $statement = "delete from articles where id = " . $id;
             $outcome = mysqli_query($mysqli, $statement);
+            mysqli_close($mysqli);
         } else {
             $record_id = mysqli_insert_id($mysqli);
 
@@ -59,7 +60,9 @@ if (isset($_POST['js'])) {
         echo "set ".$id;
     } else {
         echo $error;
+        mysqli_close($mysqli);
     }
 } else {
     echo "Cannot send content out.";
+    mysqli_close($mysqli);
 }

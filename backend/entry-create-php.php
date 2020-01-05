@@ -19,6 +19,7 @@ if (isset($_POST['js'])) {
             $error = $e;
             $statement = "delete from articles where id = " . $id;
             $outcome = mysqli_query($mysqli, $statement);
+            mysqli_close($mysqli);
         } else {
             $entry_id = mysqli_insert_id($mysqli);
 
@@ -43,6 +44,12 @@ if (isset($_POST['js'])) {
                 fwrite($comment_file, $value);
                 fclose($comment_file);
             }
+
+            $reference = $note->{'reference'};
+            foreach ($reference as $item) {
+                $statement = "insert into entry_references(entry_id, reference) value(".$entry_id.",\"".$item."\")";
+                $outcome = mysqli_query($mysqli, $statement);
+            }
         }
 
         //echo "All done";
@@ -53,7 +60,9 @@ if (isset($_POST['js'])) {
         echo "set ".$id;
     } else {
         echo $error;
+        mysqli_close($mysqli);
     }
 } else {
     echo "Cannot send content out.";
+    mysqli_close($mysqli);
 }
