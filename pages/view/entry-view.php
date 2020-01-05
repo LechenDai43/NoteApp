@@ -32,11 +32,13 @@
                 $outcome = mysqli_query($mysqli, $statement);
                 $row = mysqli_fetch_row($outcome);
                 while ($row != null) {
+                    sleep(0.05);
                     $section_title = $row[0];
                     $section_directory = $row[1];
                     $section_file = fopen("../".$section_directory, 'r');
                     $section_content = "";
                     while (!feof($section_file)) {
+                        sleep(0.005);
                         $section_content = $section_content.fgets($section_file);
                     }
                     createEntrySection(json_decode($section_content), $section_title);
@@ -48,11 +50,12 @@
                 <h4>信息来源-Reference</h4>
                 <ol class="entry-ref-list">
                     <?php
+                    sleep(1);
                     $statement = "select reference from entry_references where entry_id = ".$entry_id;
                     $outcome = mysqli_query($mysqli, $statement);
                     $row = mysqli_fetch_row($outcome);
                     while ($row != null) {
-                        echo "<li>".$row[0]."</li>";
+                        echo "<li>" . $row[0] . "</li>";
                         $row = mysqli_fetch_row($outcome);
                     }
                     ?>
@@ -63,3 +66,7 @@
         <script src="../../javascript/create-submit-js.js"></script>
     </body>
 </html>
+
+<?php
+mysqli_close($mysqli);
+?>
