@@ -30,14 +30,14 @@
                         $summary_directory = "../".$row[2];
                         $statement = "select cue_id from cue_ref where note_id = ".$note_id;
                         $outcome = mysqli_query($mysqli, $statement);
-                        $row = mysqli_fetch_lengths($outcome);
+                        $row = mysqli_fetch_row($outcome);
                         while ($row != null) {
                             $cue_id = $row[0];
-                            $statement = "select cue from cues where cue_id = ".$cue_id;
+                            $statement = "select cue from note_cues where cue_id = ".$cue_id;
                             $outcome1 = mysqli_query($mysqli, $statement);
                             $cue = mysqli_fetch_row($outcome1)[0];
                             echo "<p class=\"cue-content\">&#8226".$cue."</p>";
-                            $row = mysqli_fetch_lengths($outcome);
+                            $row = mysqli_fetch_row($outcome);
                         }
                         ?>
                     </div>
@@ -79,7 +79,7 @@
             $outcome = mysqli_query($mysqli, $statement);
             $row = mysqli_fetch_row($outcome);
             while ($row != null) {
-                $comment_directory = $row[0];
+                $comment_directory = "../".$row[0];
                 $comment_file = fopen($comment_directory, 'r');
                 $comment_content = "";
                 while (!feof($comment_file)) {

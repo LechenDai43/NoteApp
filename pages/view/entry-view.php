@@ -32,7 +32,7 @@
                 $outcome = mysqli_query($mysqli, $statement);
                 $row = mysqli_fetch_row($outcome);
                 while ($row != null) {
-                    sleep(0.05);
+                    sleep(0.5);
                     $section_title = $row[0];
                     $section_directory = $row[1];
                     $section_file = fopen("../".$section_directory, 'r');

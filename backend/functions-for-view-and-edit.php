@@ -21,6 +21,7 @@ function createEntryTable($js) {
         }
         echo "</tr>";
     }
+    echo "</tbody></table>";
 }
 
 function createEntryList($js) {
@@ -86,6 +87,7 @@ function createNoteTable($js) {
         }
         echo "</tr>";
     }
+    echo "</tbody></table>";
 }
 
 function createNoteList($js) {
@@ -139,6 +141,7 @@ function createNoteProcess($js) {
 function createNoteContent($js) {
     echo "<div class = \"note-container\">";
     foreach ($js as $element) {
+        sleep(0.01);
         switch ($element->{'type'}) {
             case "table":
                 createNoteTable($element);
