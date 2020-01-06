@@ -38,32 +38,41 @@
                 $thought_content = $thought_content.fgets($thought_file);
             }
             $js = json_decode($thought_content);
-
+            $i = 1;
+            foreach ($js as $item) {
+                echo "<div class = \"a-process\" id = \"proc-".$i."\"> <div class = \"a-plan\">";
+                echo "<h3>计划-Plan</h3><p class = \"plan-content\">";
+                echo $item->{'plan'};
+                echo "</p></div><table class = \"try-detail\">";
+                foreach ($item->{'implementation'} as $value) {
+                    echo "<tr><td><p class = \"proc-".$i."-imp an-implement\">";
+                    echo $value->{'try'};
+                    echo "</p></td><td><p class = \"proc - ".$i."-rev an-review\">";
+                    echo $value->{'review'};
+                    echo "</p></td></tr>";
+                }
+                echo "</table></div>";
+                $i++;
+            }
             $row = mysqli_fetch_row($outcome);
         }
         ?>
-        <div class="a-process" id="proc-1">
-            <div class="a-plan">
-                <h3>计划-Plan</h3>
-                <p contenteditable="true" class="plan-content">计划内容 Plan Details</p>
-            </div>
-            <table class="try-detail">
-                <tr>
-                    <td><p contenteditable="true" class="proc-1-imp an-implement">实施情况 Implement Detail</p></td>
-                    <td><p contenteditable="true" class="proc-1-rev a-review">反思 Review</p></td>
-                </tr>
-            </table>
-            <button class="add-button" id="implement-add-proc-1" onclick="addRecordImplement(event)">添加 Add</button>
-        </div>
         <button class="add-button" id="plan-add" onclick="addRecordPlan()">添加 Add</button>
     </div>
     <div class="record-summary-container">
         <h3>总结-Summary</h3>
-        <div class="record-summary" contenteditable="true">
-            总结 Summary
+        <div class="record-summary">
+            <?php
+            $summary_file = fopen($summary_directory, 'r');
+            $summary_content = "";
+            while (!feof($summary_file)) {
+                $summary_content = $summary_content.fgets($summary_file);
+            }
+            echo $summary_content;
+            mysqli_close($mysqli);
+            ?>
         </div>
     </div>
-    <button class="submit" onclick="createRecord()">提交 Submit</button>
 </main>
 <script src="../../javascript/record-create-js.js"></script>
 <script src="../../javascript/create-submit-js.js"></script>
