@@ -351,7 +351,6 @@ function createEntry() {
         type: 'POST',
         success: function (response) {
             if (response.substr(0,3) === "set") {
-                alert("Submission successful.");
                 var id = Number(response.substr(4));
                 var form = document.createElement('form');
                 form.setAttribute("action","../view/entry-view.php");
