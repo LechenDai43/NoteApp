@@ -135,3 +135,27 @@ function createNoteProcess($js) {
     }
     echo "</div></div>";
 }
+
+function createNoteContent($js) {
+    echo "<div class = \"note-container\">";
+    foreach ($js as $element) {
+        switch ($element->{'type'}) {
+            case "table":
+                createNoteTable($element);
+                break;
+            case "list":
+                createNoteList($element);
+                break;
+            case "matrix":
+                createNoteMatrix($element);
+                break;
+            case "paragraph":
+                createNoteParagraph($element);
+                break;
+            case "process":
+                createNoteProcess($element);
+                break;
+        }
+    }
+    echo "</div>";
+}

@@ -58,6 +58,7 @@
                         echo "<li>" . $row[0] . "</li>";
                         $row = mysqli_fetch_row($outcome);
                     }
+                    mysqli_close($mysqli);
                     ?>
                 </ol>
             </div>
@@ -66,7 +67,3 @@
         <script src="../../javascript/create-submit-js.js"></script>
     </body>
 </html>
-
-<?php
-mysqli_close($mysqli);
-?>
