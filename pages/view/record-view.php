@@ -15,8 +15,8 @@
         $outcome = mysqli_query($mysqli, $statement);
         $row = mysqli_fetch_row($outcome);
         $record_id = $row[0];
-        $task_directory = $row[1];
-        $summary_directory = $row[2];
+        $task_directory = "../".$row[1];
+        $summary_directory = "../".$row[2];
         $task_file = fopen($task_directory, 'r');
         $task_content = "";
         while (!feof($task_file)) {
@@ -30,6 +30,7 @@
         $statement = "select thought from record_thoughts where record_id = ".$record_id;
         $outcome = mysqli_query($mysqli, $statement);
         $row = mysqli_fetch_row($outcome);
+        $i = 1;
         while ($row != null) {
             $thought_directory = "../".$row[0];
             $thought_file = fopen($thought_directory, 'r');
@@ -38,23 +39,20 @@
                 $thought_content = $thought_content.fgets($thought_file);
             }
             $js = json_decode($thought_content);
-            $i = 1;
-            foreach ($js as $item) {
-                echo "<div class = \"a-process\" id = \"proc-".$i."\"> <div class = \"a-plan\">";
-                echo "<h3>计划-Plan</h3><p class = \"plan-content\">";
-                echo $item->{'plan'};
-                echo "</p></div><table class = \"try-detail\">";
-                foreach ($item->{'implementation'} as $value) {
-                    echo "<tr><td><p class = \"proc-".$i."-imp an-implement\">";
-                    echo $value->{'try'};
-                    echo "</p></td><td><p class = \"proc - ".$i."-rev an-review\">";
-                    echo $value->{'review'};
-                    echo "</p></td></tr>";
-                }
-                echo "</table></div>";
-                $i++;
+            echo "<div class = \"a-process\" id = \"proc-".$i."\"> <div class = \"a-plan\">";
+            echo "<h3>计划-Plan</h3><p class = \"plan-content\">";
+            echo $js->{'plan'};
+            echo "</p></div><table class = \"try-detail\">";
+            foreach ($js->{'implementation'} as $value) {
+                echo "<tr><td><p class = \"proc-".$i."-imp an-implement\">";
+                echo $value->{'try'};
+                echo "</p></td><td><p class = \"proc - ".$i."-rev an-review\">";
+                echo $value->{'review'};
+                echo "</p></td></tr>";
             }
+            echo "</table></div>";
             $row = mysqli_fetch_row($outcome);
+            $i++;
         }
         ?>
         <button class="add-button" id="plan-add" onclick="addRecordPlan()">添加 Add</button>
